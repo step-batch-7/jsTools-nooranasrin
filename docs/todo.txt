@@ -1,14 +1,14 @@
 1 ) node cut.js -f 2 numbers.txt
-2 ) node cut.js -f -4 numbers.txt
-3 ) node cut.js -f 4- numbers.txt
-4 ) node cut.js -d "." -f 2 numbers.txt
-5 ) node cut.js -d "." -f -4 numbers.txt
-6 ) node cut.js -d "." -f 4- numbers.txt
-7 ) cat numbers.txt | node cut.js -f 2 
-8 ) cat numbers.txt | node cut.js -f -4 
-9 ) cat numbers.txt | node cut.js -f 4- 
-10) cat numbers.txt | node cut.js -d "." -f 2 
-11) cat numbers.txt | node cut.js -d "." -f -4 
+2 ) cat numbers.txt | node cut.js -f 2 
+3 ) node cut.js -f -4 numbers.txt
+4 ) cat numbers.txt | node cut.js -f -4 
+5 ) node cut.js -f 4- numbers.txt
+6 ) cat numbers.txt | node cut.js -f 4- 
+7 ) node cut.js -d "." -f 2 numbers.txt
+8 ) cat numbers.txt | node cut.js -d "." -f 2 
+9 ) node cut.js -d "." -f -4 numbers.txt
+10) cat numbers.txt | node cut.js -d "." -f -4 
+11) node cut.js -d "." -f 4- numbers.txt
 12) cat numbers.txt | node cut.js -d "." -f 4- 
 13) node cut.js -f 2 numbers.txt alphabets.txt 
 14) node cut.js -f -4 numbers.txt alphabets.txt
@@ -26,14 +26,29 @@ Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
-task1 : cutFields
-task2 : getField
-task3 : getFileContent
-task4 : getFileName
-task5 : main
+cutFields
+getField
+getFileContent
+getFileName
+main
+
+-------------------------------------------------------------------
+v0.2 ) cat numbers.txt | node cut.js -f 2 
+
+setup :- 
+Directories : src, test
+Files : cut.js, cutLib.js, testCut.js, package.json, appTest
+modules : chai
+
+Tasks :-
+cutFields
+getField
+executeCutCommand
+onUserInput
+main
 
 --------------------------------------------------------------
-v0.2 ) node cut.js -f -4 numbers.txt
+v0.3 ) node cut.js -f -4 numbers.txt
 
 setup :- 
 Directories : src, test
@@ -41,92 +56,14 @@ Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
-task1 : cutFields
-task2 : getFieldsList
-task3 : getFileContent
-task4 : getFileName
-task5 : main
-
----------------------------------------------------------------
-v0.3 ) node cut.js -f 4- numbers.txt
-
-setup :- 
-Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json, appTest
-modules : chai
-
-Tasks :-
-task1 : cutFields
-task2 : getFieldsList
-task3 : getFileContent
-task4 : getFileName
-task5 : main
-
----------------------------------------------------------------
-v0.4 ) node cut.js -d "." -f 2 numbers.txt
-
-setup :- 
-Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json, appTest
-modules : chai
-
-Tasks :-
-task1 : cutFields
-task2 : getSeparator
-task3 : getFieldsList
-task4 : getFileContent
-task5 : getFileName
-task6 : main
-
-------------------------------------------------------------------
-v0.5 ) node cut.js -d "." -f -4 numbers.txt
-
-setup :- 
-Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json, appTest
-modules : chai
-
-Tasks :-
-task1 : cutFields
-task2 : getSeparator
-task3 : getFieldsList
-task4 : getFileContent
-task5 : getFileName
-task6 : main
-
------------------------------------------------------------------
-v0.6 ) node cut.js -d "." -f 4- numbers.txt
-
-setup :- 
-Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json, appTest
-modules : chai
-
-Tasks :-
-task1 : cutFields
-task2 : getSeparator
-task3 : getFieldsList
-task4 : getFileContent
-task5 : getFileName
-task6 : main
-
--------------------------------------------------------------------
-v1.0 ) cat numbers.txt | node cut.js -f 2 
-
-setup :- 
-Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json, appTest
-modules : chai
-
-Tasks :-
-task1 : cutFields
-task2 : getField
-task3 : executeCutCommand
-task4 : onUserInput
-task5 : main
+cutFields
+getFieldsList
+getFileContent
+getFileName
+main
 
 --------------------------------------------------------------------
-v1.1 ) cat numbers.txt | node cut.js -f -4 
+v0.4 ) cat numbers.txt | node cut.js -f -4 
 
 setup :- 
 Directories : src, test
@@ -134,14 +71,29 @@ Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
-task1 : cutFields
-task2 : getFieldsList
-task3 : executeCutCommand
-task4 : onUserInput
-task5 : main
+cutFields
+getFieldsList
+executeCutCommand
+onUserInput
+main
+
+---------------------------------------------------------------
+v0.5 ) node cut.js -f 4- numbers.txt
+
+setup :- 
+Directories : src, test
+Files : cut.js, cutLib.js, testCut.js, package.json, appTest
+modules : chai
+
+Tasks :-
+cutFields
+getFieldsList
+getFileContent
+getFileName
+main
 
 -------------------------------------------------------------------
-v1.2 ) cat numbers.txt | node cut.js -d "." -f 4- 
+v0.6 ) cat numbers.txt | node cut.js -d "." -f 4- 
 
 setup :- 
 Directories : src, test
@@ -149,15 +101,31 @@ Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
-task1 : cutFields
-task2 : getSeparator
-task3 : getFieldsList
-task4 : executeCutCommand
-task5 : onUserInput
-task6 : main
+cutFields
+getSeparator
+getFieldsList
+executeCutCommand
+onUserInput
+main
+
+---------------------------------------------------------------
+v1.0 ) node cut.js -d "." -f 2 numbers.txt
+
+setup :- 
+Directories : src, test
+Files : cut.js, cutLib.js, testCut.js, package.json, appTest
+modules : chai
+
+Tasks :-
+cutFields
+getSeparator
+getFieldsList
+getFileContent
+getFileName
+main
 
 -----------------------------------------------------------------------
-v1.3 ) cat numbers.txt | node cut.js -d "." -f 2 
+v1.1 ) cat numbers.txt | node cut.js -d "." -f 2 
 
 setup :- 
 Directories : src, test
@@ -165,16 +133,32 @@ Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
-task1 : cutFields
-task2 : getSeparator
-task3 : getField
-task4 : executeCutCommand
-task5 : getFileContent
-task6 : getFileName
-task7 : main
+cutFields
+getSeparator
+getField
+executeCutCommand
+getFileContent
+getFileName
+main
+
+------------------------------------------------------------------
+v1.2 ) node cut.js -d "." -f -4 numbers.txt
+
+setup :- 
+Directories : src, test
+Files : cut.js, cutLib.js, testCut.js, package.json, appTest
+modules : chai
+
+Tasks :-
+cutFields
+getSeparator
+getFieldsList
+getFileContent
+getFileName
+main
 
 ----------------------------------------------------------
-v1.4 ) cat numbers.txt | node cut.js -d "." -f -4 
+v1.3 ) cat numbers.txt | node cut.js -d "." -f -4 
 
 setup :- 
 Directories : src, test
@@ -182,16 +166,32 @@ Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
-task1 : cutFields
-task2 : getSeparator
-task3 : getField
-task4 : executeCutCommand
-task5 : getFileContent
-task6 : getFileName
-task7 : main
+cutFields
+getSeparator
+getField
+executeCutCommand
+getFileContent
+getFileName
+main
+
+-----------------------------------------------------------------
+v1.4 ) node cut.js -d "." -f 4- numbers.txt
+
+setup :- 
+Directories : src, test
+Files : cut.js, cutLib.js, testCut.js, package.json, appTest
+modules : chai
+
+Tasks :-
+cutFields
+getSeparator
+getFieldsList
+getFileContent
+getFileName
+main
 
 ----------------------------------------------------------
-v2.5 ) cat numbers.txt | node cut.js -d "." -f 4- 
+v1.5 ) cat numbers.txt | node cut.js -d "." -f 4- 
 
 setup :- 
 Directories : src, test
@@ -199,13 +199,13 @@ Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
-task1 : cutFields
-task2 : getSeparator
-task3 : getField
-task4 : executeCutCommand
-task5 : getFileContent
-task6 : getFileName
-task7 : main
+cutFields
+getSeparator
+getField
+executeCutCommand
+getFileContent
+getFileName
+main
 
 
 ------------------------------------------------------------------
@@ -217,12 +217,12 @@ Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
-task1 : cutFields
-task2 : getField
-task3 : executeCutCommand
-task4 : getFileContent
-task5 : getFilesList
-task6 : main
+cutFields
+getField
+executeCutCommand
+getFileContent
+getFilesList
+main
 
 --------------------------------------------------------
 v2.1 ) node cut.js -f -4 numbers.txt alphabets.txt
@@ -233,12 +233,12 @@ Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
-task1 : cutFields
-task2 : getFieldsList
-task3 : executeCutCommand
-task4 : getFileContent
-task5 : getFileList
-task6 : main
+cutFields
+getFieldsList
+executeCutCommand
+getFileContent
+getFileList
+main
 
 --------------------------------------------------------
 v2.2 ) node cut.js -f 4- numbers.txt alphabets.txt
@@ -249,12 +249,12 @@ Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
-task1 : cutFields
-task2 : getFieldsList
-task3 : executeCutCommand
-task4 : getFileContent
-task5 : getFileList
-task6 : main
+cutFields
+getFieldsList
+executeCutCommand
+getFileContent
+getFileList
+main
 
 ----------------------------------------------------------
 v2.3 ) node cut.js -d "." -f 2 numbers.txt  alphabets.txt
@@ -265,13 +265,13 @@ Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
-task1 : cutFields
-task2 : getSeparator
-task3 : getFields
-task4 : executeCutCommand
-task5 : getFileContent
-task6 : getFileList
-task7 : main
+cutFields
+getSeparator
+getFields
+executeCutCommand
+getFileContent
+getFileList
+main
 
 ----------------------------------------------------------
 v2.4 ) node cut.js -d "." -f -4 numbers.txt alphabets.txt
@@ -282,13 +282,13 @@ Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
-task1 : cutFields
-task2 : getSeparator
-task3 : getFieldsList
-task4 : executeCutCommand
-task5 : getFileContent
-task6 : getFilesList
-task7 : main
+cutFields
+getSeparator
+getFieldsList
+executeCutCommand
+getFileContent
+getFilesList
+main
 
 ----------------------------------------------------------
 v2.5 ) node cut.js -d "." -f 4- numbers.txt alphabets.txt
@@ -299,12 +299,12 @@ Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
-task1 : cutFields
-task2 : getSeparator
-task3 : getFieldsList
-task4 : executeCutCommand
-task5 : getFileContent
-task6 : getFileList
-task7 : main
+cutFields
+getSeparator
+getFieldsList
+executeCutCommand
+getFileContent
+getFileList
+main
 
 ----------------------------------------------------------
