@@ -1,0 +1,26 @@
+{
+  "name": "cut",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cut.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/step-batch-7/jsTools-nooranasrin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/step-batch-7/jsTools-nooranasrin/issues"
+  },
+  "homepage": "https://github.com/step-batch-7/jsTools-nooranasrin#readme",
+  "dependencies": {
+    "chai": "^4.2.0"
+  }
+}
