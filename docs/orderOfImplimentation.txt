@@ -1,0 +1,30 @@
+//----------------------------------- -f option with one file --------------------------------------
+
+INPUT 1  => node cut.js -f 2 numbers.txt
+        => node cut.js -f -4 numbers.txt
+        => node cut.js -f 4- numbers.txt
+
+INPUT 2 => node cut.js -d "." -f 2 numbers.txt
+        => node cut.js -d "." -f -4 numbers.txt
+        => node cut.js -d "." -f 4- numbers.txt
+
+//-------------------------------- -f options with standard input ---------------------------------
+
+INPUT 1 => cat numbers.txt | node cut.js -f 2 
+        => cat numbers.txt | node cut.js -f -4 
+        => cat numbers.txt | node cut.js -f 4- 
+
+INPUT 2 => cat numbers.txt | node cut.js -d "." -f 2 
+        => cat numbers.txt | node cut.js -d "." -f -4 
+        => cat numbers.txt | node cut.js -d "." -f 4- 
+
+//----------------------------------------- -f option with more than one file -----------------------
+
+INPUT 1  => node cut.js -f 2 numbers.txt alphabets.txt 
+        => node cut.js -f -4 numbers.txt alphabets.txt
+        => node cut.js -f 4- numbers.txt alphabets.txt
+
+INPUT 2 => node cut.js -d "." -f 2 numbers.txt  alphabets.txt
+        => node cut.js -d "." -f -4 numbers.txt alphabets.txt 
+        => node cut.js -d "." -f 4- numbers.txt alphabets.txt 
+
