@@ -1,6 +1,12 @@
 const assert = require("chai").assert;
 const cut = require("../src/cutLib");
-const { getSplittedFields, splitFields, getField, getFileContent } = cut;
+const {
+  getSplittedFields,
+  splitFields,
+  getField,
+  getFileContent,
+  getFileName
+} = cut;
 
 describe("cutFields", () => {
   it("should give an array of string that contains specified field values", () => {
@@ -103,5 +109,12 @@ describe("getFileContent", () => {
     let expected = [`cut: ./test/testFile: No such file or directory`];
     let actual = getFileContent(fileOperations);
     assert.deepStrictEqual(actual, expected);
+  });
+});
+
+describe("getFileName", () => {
+  it("should return the 5th element of the array", () => {
+    const cmdLineArg = ["node", "cut.js", "-f", "4", "./numbers.txt"];
+    assert.strictEqual(getFileName(cmdLineArg), "./numbers.txt");
   });
 });

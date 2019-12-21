@@ -26,4 +26,14 @@ const getFileContent = function(fileInfo) {
   return fileInfo.read(fileName, fileInfo.encoding).split("\n");
 };
 
-module.exports = { splitFields, getSplittedFields, getField, getFileContent };
+const getFileName = function(cmdLineArg) {
+  return cmdLineArg[4];
+};
+
+module.exports = {
+  splitFields,
+  getSplittedFields,
+  getField,
+  getFileContent,
+  getFileName
+};
