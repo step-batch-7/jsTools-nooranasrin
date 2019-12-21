@@ -79,7 +79,7 @@ task5 : getFileName
 task6 : main
 
 ------------------------------------------------------------------
-v0.5 ) node cut.js -d "." -f 2 numbers.txt
+v0.5 ) node cut.js -d "." -f -4 numbers.txt
 
 setup :- 
 Directories : src, test
@@ -156,56 +156,8 @@ task4 : executeCutCommand
 task5 : onUserInput
 task6 : main
 
-------------------------------------------------------------------
-v2.0 ) node cut.js -f 2 numbers.txt alphabets.txt
-
-setup :- 
-Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json
-modules : chai
-
-Tasks :-
-task1 : cutFields
-task2 : getField
-task3 : executeCutCommand
-task4 : getFileContent
-task5 : getFileName
-task6 : main
-
---------------------------------------------------------
-v2.1 ) node cut.js -f -4 numbers.txt alphabets.txt
-
-setup :- 
-Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json
-modules : chai
-
-Tasks :-
-task1 : cutFields
-task2 : getFieldsList
-task3 : executeCutCommand
-task4 : getFileContent
-task5 : getFileName
-task6 : main
-
---------------------------------------------------------
-v2.2 ) node cut.js -f 4- numbers.txt alphabets.txt
-
-setup :- 
-Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json
-modules : chai
-
-Tasks :-
-task1 : cutFields
-task2 : getFieldsList
-task3 : executeCutCommand
-task4 : getFileContent
-task5 : getFileName
-task6 : main
-
------------------------------------------------------------
-v2.3 ) cat numbers.txt | node cut.js -d "." -f 2 
+-----------------------------------------------------------------------
+v1.3 ) cat numbers.txt | node cut.js -d "." -f 2 
 
 setup :- 
 Directories : src, test
@@ -222,7 +174,7 @@ task6 : getFileName
 task7 : main
 
 ----------------------------------------------------------
-v2.4 ) cat numbers.txt | node cut.js -d "." -f -4 
+v1.4 ) cat numbers.txt | node cut.js -d "." -f -4 
 
 setup :- 
 Directories : src, test
@@ -255,6 +207,55 @@ task5 : getFileContent
 task6 : getFileName
 task7 : main
 
+
+------------------------------------------------------------------
+v2.0 ) node cut.js -f 2 numbers.txt alphabets.txt
+
+setup :- 
+Directories : src, test
+Files : cut.js, cutLib.js, testCut.js, package.json
+modules : chai
+
+Tasks :-
+task1 : cutFields
+task2 : getField
+task3 : executeCutCommand
+task4 : getFileContent
+task5 : getFilesList
+task6 : main
+
+--------------------------------------------------------
+v2.1 ) node cut.js -f -4 numbers.txt alphabets.txt
+
+setup :- 
+Directories : src, test
+Files : cut.js, cutLib.js, testCut.js, package.json
+modules : chai
+
+Tasks :-
+task1 : cutFields
+task2 : getFieldsList
+task3 : executeCutCommand
+task4 : getFileContent
+task5 : getFileList
+task6 : main
+
+--------------------------------------------------------
+v2.2 ) node cut.js -f 4- numbers.txt alphabets.txt
+
+setup :- 
+Directories : src, test
+Files : cut.js, cutLib.js, testCut.js, package.json
+modules : chai
+
+Tasks :-
+task1 : cutFields
+task2 : getFieldsList
+task3 : executeCutCommand
+task4 : getFileContent
+task5 : getFileList
+task6 : main
+
 ----------------------------------------------------------
 v2.3 ) node cut.js -d "." -f 2 numbers.txt  alphabets.txt
 
@@ -269,7 +270,7 @@ task2 : getSeparator
 task3 : getFields
 task4 : executeCutCommand
 task5 : getFileContent
-task6 : getFileName
+task6 : getFileList
 task7 : main
 
 ----------------------------------------------------------
@@ -286,7 +287,7 @@ task2 : getSeparator
 task3 : getFieldsList
 task4 : executeCutCommand
 task5 : getFileContent
-task6 : getFileName
+task6 : getFilesList
 task7 : main
 
 ----------------------------------------------------------
@@ -303,7 +304,7 @@ task2 : getSeparator
 task3 : getFieldsList
 task4 : executeCutCommand
 task5 : getFileContent
-task6 : getFileName
+task6 : getFileList
 task7 : main
 
 ----------------------------------------------------------
