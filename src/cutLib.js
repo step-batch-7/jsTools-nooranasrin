@@ -21,12 +21,9 @@ const getField = function(cmdLineArg) {
 
 const getFileContent = function(fileInfo) {
   const exist = fileInfo.exist;
-  const read = fileInfo.read;
-  const encoding = fileInfo.encoding;
   const fileName = fileInfo.fileName;
   if (!exist(fileName)) return [`cut: ${fileName}: No such file or directory`];
-  const lines = read(fileName, encoding).split("\n");
-  return lines;
+  return fileInfo.read(fileName, fileInfo.encoding).split("\n");
 };
 
 module.exports = { splitFields, getSplittedFields, getField, getFileContent };
