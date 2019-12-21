@@ -22,7 +22,7 @@ v0.1 ) node cut.js -f 2 numbers.txt
 
 setup :- 
 Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json
+Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
@@ -37,7 +37,7 @@ v0.2 ) node cut.js -f -4 numbers.txt
 
 setup :- 
 Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json
+Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
@@ -52,7 +52,7 @@ v0.3 ) node cut.js -f 4- numbers.txt
 
 setup :- 
 Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json
+Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
@@ -67,7 +67,7 @@ v0.4 ) node cut.js -d "." -f 2 numbers.txt
 
 setup :- 
 Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json
+Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
@@ -83,7 +83,7 @@ v0.5 ) node cut.js -d "." -f -4 numbers.txt
 
 setup :- 
 Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json
+Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
@@ -99,7 +99,7 @@ v0.6 ) node cut.js -d "." -f 4- numbers.txt
 
 setup :- 
 Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json
+Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
@@ -115,7 +115,7 @@ v1.0 ) cat numbers.txt | node cut.js -f 2
 
 setup :- 
 Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json
+Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
@@ -130,7 +130,7 @@ v1.1 ) cat numbers.txt | node cut.js -f -4
 
 setup :- 
 Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json
+Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
@@ -145,7 +145,7 @@ v1.2 ) cat numbers.txt | node cut.js -d "." -f 4-
 
 setup :- 
 Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json
+Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
@@ -161,7 +161,7 @@ v1.3 ) cat numbers.txt | node cut.js -d "." -f 2
 
 setup :- 
 Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json
+Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
@@ -178,7 +178,7 @@ v1.4 ) cat numbers.txt | node cut.js -d "." -f -4
 
 setup :- 
 Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json
+Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
@@ -195,7 +195,7 @@ v2.5 ) cat numbers.txt | node cut.js -d "." -f 4-
 
 setup :- 
 Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json
+Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
@@ -213,7 +213,7 @@ v2.0 ) node cut.js -f 2 numbers.txt alphabets.txt
 
 setup :- 
 Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json
+Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
@@ -229,7 +229,7 @@ v2.1 ) node cut.js -f -4 numbers.txt alphabets.txt
 
 setup :- 
 Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json
+Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
@@ -245,7 +245,7 @@ v2.2 ) node cut.js -f 4- numbers.txt alphabets.txt
 
 setup :- 
 Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json
+Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
@@ -261,7 +261,7 @@ v2.3 ) node cut.js -d "." -f 2 numbers.txt  alphabets.txt
 
 setup :- 
 Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json
+Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
@@ -278,7 +278,7 @@ v2.4 ) node cut.js -d "." -f -4 numbers.txt alphabets.txt
 
 setup :- 
 Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json
+Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
@@ -295,7 +295,7 @@ v2.5 ) node cut.js -d "." -f 4- numbers.txt alphabets.txt
 
 setup :- 
 Directories : src, test
-Files : cut.js, cutLib.js, testCut.js, package.json
+Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
