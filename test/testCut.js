@@ -59,6 +59,6 @@ describe("getField", () => {
 describe("getFileName", () => {
   it("should return the 5th element of the array", () => {
     const cmdLineArg = ["node", "cut.js", "-f", "4", "./numbers.txt"];
-    assert.strictEqual(getFileName(cmdLineArg), "./numbers.txt");
+    assert.strictEqual(getFileName(cmdLineArg, {}), "./numbers.txt");
   });
 });

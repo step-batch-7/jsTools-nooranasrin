@@ -2,9 +2,9 @@
 runTest() {
   local test=$1
   local command=`head -1 $test`
-  #echo $command
+  # echo $command
   sed "1d" $test > expected.txt
-  #cat expected_output.txt
+  # cat expected_output.txt
   eval $command &> output.txt
   cmp output.txt expected.txt > /dev/null
   if [ $? -eq 0 ]

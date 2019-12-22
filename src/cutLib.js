@@ -19,8 +19,8 @@ const getField = function(cutInfo, cmdLineArg) {
   return cutInfo;
 };
 
-const getFileName = function(cmdLineArg) {
-  return cmdLineArg[4];
+const getFileName = function(cmdLineArg, env) {
+  return env.PATH_FOR_READING || cmdLineArg[4];
 };
 
 module.exports = {

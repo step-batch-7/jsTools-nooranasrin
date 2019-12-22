@@ -5,7 +5,7 @@ const loadLines = function(fileInfo) {
   try {
     return { lines: fileInfo.read(path, fileInfo.encoding).split("\n") };
   } catch (exception) {
-    return { err: `cut: ${path}: No such file or directory` };
+    return { err: [`cut: ${path}: No such file or directory`] };
   }
 };
 

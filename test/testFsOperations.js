@@ -34,7 +34,7 @@ describe("loadLines", () => {
       fileName: "./test/testFile"
     };
 
-    let expected = { err: `cut: ./test/testFile: No such file or directory` };
+    let expected = { err: [`cut: ./test/testFile: No such file or directory`] };
     let actual = loadLines(fileOperations);
     assert.deepStrictEqual(actual, expected);
   });
