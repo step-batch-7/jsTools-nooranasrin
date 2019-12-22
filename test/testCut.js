@@ -47,6 +47,13 @@ describe("getCutFields", () => {
     const actual = splitFields(field, fieldContents, line);
     assert.deepStrictEqual(actual, ["124"]);
   });
+  it("should give the fields contents when more than one field is needed", () => {
+    const field = [2, 3, 5];
+    const fieldContents = [];
+    const line = "123  124  123  124  126";
+    const actual = splitFields(field, fieldContents, line);
+    assert.deepStrictEqual(actual, ["124", "123", "126"]);
+  });
 });
 
 describe("getFields", () => {
