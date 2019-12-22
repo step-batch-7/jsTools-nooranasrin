@@ -1,5 +1,5 @@
 const { getFsTools, loadLines } = require("./fsOperationsLib");
-const { getField, getSplittedFields, getFileName } = require("./cutLib");
+const { getFields, getSplittedFields, getFileName } = require("./cutLib");
 
 const handleCmdLineArg = function(cmdLineArg) {
   const fileName = getFileName(cmdLineArg);
@@ -7,7 +7,7 @@ const handleCmdLineArg = function(cmdLineArg) {
   let cutInfo = loadLines(fsTools);
   const keys = Object.keys(cutInfo);
   if (keys.includes("err")) return cutInfo.err;
-  cutInfo = getField(cutInfo, cmdLineArg);
+  cutInfo = getFields(cutInfo, cmdLineArg);
   return getSplittedFields(cutInfo);
 };
 

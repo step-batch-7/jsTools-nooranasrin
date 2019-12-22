@@ -1,11 +1,11 @@
 const assert = require("chai").assert;
 const cut = require("../src/cutLib");
-const { getSplittedFields, splitFields, getField, getFileName } = cut;
+const { getSplittedFields, splitFields, getFields, getFileName } = cut;
 
 describe("cutFields", () => {
   it("should give an array of string that contains specified field values", () => {
     let cutInfo = {
-      field: 2,
+      fields: [2],
       lines: ["123  123", "123  124"]
     };
     let actual = getSplittedFields(cutInfo);
@@ -13,7 +13,7 @@ describe("cutFields", () => {
     assert.deepStrictEqual(actual, expected);
 
     cutInfo = {
-      field: 2,
+      fields: [2],
       lines: ["123  123  123", "123  124  123"]
     };
     actual = getSplittedFields(cutInfo);
@@ -23,7 +23,7 @@ describe("cutFields", () => {
 
   it("should give the line when the separator is not present", () => {
     const cutInfo = {
-      field: 2,
+      fields: [2],
       lines: ["123", "123"]
     };
     const actual = getSplittedFields(cutInfo);
@@ -34,14 +34,14 @@ describe("cutFields", () => {
 
 describe("getCutFields", () => {
   it("should give the line when the separator is not present", () => {
-    const field = 2;
+    const field = [2];
     const fieldContents = [];
     const line = "123 123";
     const actual = splitFields(field, fieldContents, line);
     assert.deepStrictEqual(actual, ["123 123"]);
   });
   it("should give the field contents when the separator is present", () => {
-    const field = 2;
+    const field = [2];
     const fieldContents = [];
     const line = "123  124";
     const actual = splitFields(field, fieldContents, line);
@@ -49,10 +49,25 @@ describe("getCutFields", () => {
   });
 });
 
-describe("getField", () => {
+describe("getFields", () => {
   it("should give an object containing the field value", () => {
     const cmdLineArg = ["node", "-f", "3"];
-    assert.deepStrictEqual(getField({}, cmdLineArg), { field: "3" });
+    assert.deepStrictEqual(getFields({}, cmdLineArg), { fields: ["3"] });
+  });
+  it("should give an object containing field values when the fields contains two values", () => {
+    const cmdLineArg = ["node", "-f", "3,5"];
+    assert.deepStrictEqual(getFields({}, cmdLineArg), { fields: ["3", "5"] });
+  });
+  it("should give an object containing all the field values when the given field is a range", () => {
+    let cmdLineArg = ["node", "-f", "3-5"];
+    assert.deepStrictEqual(getFields({}, cmdLineArg), {
+      fields: ["3", "4", "5"]
+    });
+
+    cmdLineArg = ["node", "-f", "3-7"];
+    assert.deepStrictEqual(getFields({}, cmdLineArg), {
+      fields: ["3", "4", "5", "6", "7"]
+    });
   });
 });
 
