@@ -19,11 +19,13 @@ const getField = function(cmdLineArg) {
   return { field };
 };
 
-const getFileContent = function(fileInfo) {
-  const exist = fileInfo.exist;
+const loadLines = function(fileInfo) {
   const fileName = fileInfo.fileName;
-  if (!exist(fileName)) return [`cut: ${fileName}: No such file or directory`];
-  return fileInfo.read(fileName, fileInfo.encoding).split("\n");
+  try {
+    return { lines: fileInfo.read(fileName, fileInfo.encoding).split("\n") };
+  } catch (exception) {
+    return { err: `cut: ${fileName}: No such file or directory` };
+  }
 };
 
 const getFileName = function(cmdLineArg) {
@@ -34,6 +36,6 @@ module.exports = {
   splitFields,
   getSplittedFields,
   getField,
-  getFileContent,
+  loadLines,
   getFileName
 };

@@ -4,7 +4,7 @@ const {
   getSplittedFields,
   splitFields,
   getField,
-  getFileContent,
+  loadLines,
   getFileName
 } = cut;
 
@@ -62,7 +62,7 @@ describe("getField", () => {
   });
 });
 
-describe("getFileContent", () => {
+describe("loadLines", () => {
   it("should read the content of the file when the file is existing", () => {
     const read = function(path, encoding) {
       assert.strictEqual("./test/testFile", path);
@@ -70,44 +70,32 @@ describe("getFileContent", () => {
       return "hello\nhello";
     };
 
-    const exist = function(path) {
-      assert.strictEqual("./test/testFile", path);
-      return true;
-    };
-
     let fileOperations = {
       read: read,
-      exist: exist,
       encoding: "utf8",
       fileName: "./test/testFile"
     };
 
-    let expected = ["hello", "hello"];
-    let actual = getFileContent(fileOperations);
+    let expected = { lines: ["hello", "hello"] };
+    let actual = loadLines(fileOperations);
     assert.deepStrictEqual(actual, expected);
   });
 
   it("should give the error message when the file is not existing", () => {
     const read = function(path, encoding) {
-      assert.strictEqual("./test/testFile", path);
+      assert.strictEqual("./test/testFil", path);
       assert.strictEqual("utf8", encoding);
       return "{}";
     };
 
-    const exist = function(path) {
-      assert.strictEqual("./test/testFile", path);
-      return false;
-    };
-
     let fileOperations = {
       read: read,
-      exist: exist,
       encoding: "utf8",
       fileName: "./test/testFile"
     };
 
-    let expected = [`cut: ./test/testFile: No such file or directory`];
-    let actual = getFileContent(fileOperations);
+    let expected = { err: `cut: ./test/testFile: No such file or directory` };
+    let actual = loadLines(fileOperations);
     assert.deepStrictEqual(actual, expected);
   });
 });
