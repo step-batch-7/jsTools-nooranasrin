@@ -1,7 +1,7 @@
 const { handleCmdLineArg } = require("./src/executeCommand");
 
-const main = function(cmdLineArg, env) {
-  console.log(handleCmdLineArg(cmdLineArg, env).join("\n"));
+const main = function(cmdLineArg) {
+  console.log(handleCmdLineArg(cmdLineArg).join("\n"));
 };
 
-main(process.argv, process.env);
+main(process.argv);

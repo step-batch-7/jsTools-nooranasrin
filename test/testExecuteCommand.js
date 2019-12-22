@@ -5,16 +5,16 @@ describe("handleCmdLineArg", () => {
   it("should give the 2nd field of the given file ", () => {
     const cmdLineArg = ["node", "cut.js", "-f", "2", "./appTests/numbers.txt"];
     const expected = ["2", "2", "1", "2", "2"];
-    assert.deepStrictEqual(handleCmdLineArg(cmdLineArg, {}), expected);
+    assert.deepStrictEqual(handleCmdLineArg(cmdLineArg), expected);
   });
   it("should give the line when the separator is not present", () => {
     const cmdLineArg = ["node", "cut.js", "-f", "2", "./appTests/numbers.txt"];
     const expected = ["2", "2", "1", "2", "2"];
-    assert.deepStrictEqual(handleCmdLineArg(cmdLineArg, {}), expected);
+    assert.deepStrictEqual(handleCmdLineArg(cmdLineArg), expected);
   });
   it("should give the error message when the file is not present", () => {
     const cmdLineArg = ["node", "cut.js", "-f", "2", "./appTest/numbers.txt"];
     const expected = ["cut: ./appTest/numbers.txt: No such file or directory"];
-    assert.deepStrictEqual(handleCmdLineArg(cmdLineArg, {}), expected);
+    assert.deepStrictEqual(handleCmdLineArg(cmdLineArg), expected);
   });
 });
