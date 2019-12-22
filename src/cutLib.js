@@ -14,18 +14,9 @@ const getSplittedFields = function(cutInfo) {
   return lines.reduce(splitFields.bind(null, field), []);
 };
 
-const getField = function(cmdLineArg) {
-  const field = cmdLineArg[cmdLineArg.indexOf(`-f`) + 1];
-  return { field };
-};
-
-const loadLines = function(fileInfo) {
-  const fileName = fileInfo.fileName;
-  try {
-    return { lines: fileInfo.read(fileName, fileInfo.encoding).split("\n") };
-  } catch (exception) {
-    return { err: `cut: ${fileName}: No such file or directory` };
-  }
+const getField = function(cutInfo, cmdLineArg) {
+  cutInfo.field = cmdLineArg[cmdLineArg.indexOf(`-f`) + 1];
+  return cutInfo;
 };
 
 const getFileName = function(cmdLineArg) {
@@ -36,6 +27,5 @@ module.exports = {
   splitFields,
   getSplittedFields,
   getField,
-  loadLines,
   getFileName
 };
