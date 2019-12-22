@@ -30,8 +30,8 @@ Tasks :-
 --done-- getField
 --done-- getFileContent
 --done-- getFileName
-executeCutCommand
-main
+--done-- handleCmdLineArg
+--done-- main
 
 -------------------------------------------------------------------
 v0.2 ) cat numbers.txt | node cut.js -f 2 
