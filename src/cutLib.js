@@ -1,21 +1,21 @@
-const getFieldContents = function(contentList, fieldContents, field) {
-  if (contentList.length === 1) {
-    fieldContents.push(contentList[0]);
-    return fieldContents;
-  }
-  fieldContents.push(contentList[+field - 1]);
-  return fieldContents;
+const getFieldContents = function(contentList, field) {
+  const content = contentList[+field - 1];
+  if (!content) return "";
+  return content;
 };
 
-const splitFields = function(fields, fieldContents, line) {
+const splitFields = function(fields, line) {
   const contentList = line.split("  ");
-  return fields.reduce(getFieldContents.bind(null, contentList), fieldContents);
+  if (contentList.length === 1) {
+    return [contentList[0]];
+  }
+  return fields.map(getFieldContents.bind(null, contentList));
 };
 
 const getSplittedFields = function(cutInfo) {
   const lines = cutInfo.lines;
   const fields = cutInfo.fields;
-  return lines.reduce(splitFields.bind(null, fields), []);
+  return lines.map(splitFields.bind(null, fields));
 };
 
 const getFields = function(cutInfo, cmdLineArg) {
@@ -42,5 +42,6 @@ module.exports = {
   splitFields,
   getSplittedFields,
   getFields,
-  getFileName
+  getFileName,
+  getFieldContents
 };

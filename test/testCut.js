@@ -1,6 +1,12 @@
 const assert = require("chai").assert;
 const cut = require("../src/cutLib");
-const { getSplittedFields, splitFields, getFields, getFileName } = cut;
+const {
+  getSplittedFields,
+  splitFields,
+  getFields,
+  getFileName,
+  getFieldContents
+} = cut;
 
 describe("cutFields", () => {
   it("should give an array of string that contains specified field values", () => {
@@ -9,7 +15,7 @@ describe("cutFields", () => {
       lines: ["123  123", "123  124"]
     };
     let actual = getSplittedFields(cutInfo);
-    let expected = ["123", "124"];
+    let expected = [["123"], ["124"]];
     assert.deepStrictEqual(actual, expected);
 
     cutInfo = {
@@ -17,7 +23,7 @@ describe("cutFields", () => {
       lines: ["123  123  123", "123  124  123"]
     };
     actual = getSplittedFields(cutInfo);
-    expected = ["123", "124"];
+    expected = [["123"], ["124"]];
     assert.deepStrictEqual(actual, expected);
   });
 
@@ -27,7 +33,7 @@ describe("cutFields", () => {
       lines: ["123", "123"]
     };
     const actual = getSplittedFields(cutInfo);
-    const expected = ["123", "123"];
+    const expected = [["123"], ["123"]];
     assert.deepStrictEqual(actual, expected);
   });
 });
@@ -37,21 +43,21 @@ describe("getCutFields", () => {
     const field = [2];
     const fieldContents = [];
     const line = "123 123";
-    const actual = splitFields(field, fieldContents, line);
+    const actual = splitFields(field, line);
     assert.deepStrictEqual(actual, ["123 123"]);
   });
   it("should give the field contents when the separator is present", () => {
     const field = [2];
     const fieldContents = [];
     const line = "123  124";
-    const actual = splitFields(field, fieldContents, line);
+    const actual = splitFields(field, line);
     assert.deepStrictEqual(actual, ["124"]);
   });
   it("should give the fields contents when more than one field is needed", () => {
     const field = [2, 3, 5];
     const fieldContents = [];
     const line = "123  124  123  124  126";
-    const actual = splitFields(field, fieldContents, line);
+    const actual = splitFields(field, line);
     assert.deepStrictEqual(actual, ["124", "123", "126"]);
   });
 });
@@ -82,5 +88,14 @@ describe("getFileName", () => {
   it("should return the 5th element of the array", () => {
     const cmdLineArg = ["node", "cut.js", "-f", "4", "./numbers.txt"];
     assert.strictEqual(getFileName(cmdLineArg), "./numbers.txt");
+  });
+});
+
+describe("getFieldContents", () => {
+  it("should give the corresponding field value when the content is not undefined", () => {
+    assert.deepStrictEqual(getFieldContents(["123", "122"], 1), "123");
+  });
+  it("should give empty string when the content is present", () => {
+    assert.deepStrictEqual(getFieldContents(["123", "122"], 3), "");
   });
 });
