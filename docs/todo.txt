@@ -42,8 +42,8 @@ Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
-cutFields
-getField
+--done-- cutFields
+--done-- getField
 executeCutCommand
 onUserInput
 main

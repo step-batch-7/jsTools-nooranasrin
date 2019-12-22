@@ -1,0 +1,6 @@
+(export PATH="./appTest/numbers.txt";node cut.js -f 2 numbers.txt)
+2
+2
+1
+2
+2

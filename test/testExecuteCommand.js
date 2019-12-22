@@ -2,13 +2,18 @@ const assert = require("chai").assert;
 const { handleCmdLineArg } = require("../src/executeCommand");
 
 describe("handleCmdLineArg", () => {
-  it("should return the 2nd field of the given file ", () => {
-    const cmdLineArg = ["node", "cut.js", "-f", "2", "./docs/numbers.txt"];
+  it("should give the 2nd field of the given file ", () => {
+    const cmdLineArg = ["node", "cut.js", "-f", "2", "./appTests/numbers.txt"];
     const expected = ["2", "2", "1", "2", "2"];
     assert.deepStrictEqual(handleCmdLineArg(cmdLineArg), expected);
   });
-  it("should return the line when the separator is not present", () => {
-    const cmdLineArg = ["node", "cut.js", "-f", "2", "./docs/numbers.txt"];
+  it("should give the line when the separator is not present", () => {
+    const cmdLineArg = ["node", "cut.js", "-f", "2", "./appTests/numbers.txt"];
+    const expected = ["2", "2", "1", "2", "2"];
+    assert.deepStrictEqual(handleCmdLineArg(cmdLineArg), expected);
+  });
+  it("should give the error message when the file is not present", () => {
+    const cmdLineArg = ["node", "cut.js", "-f", "2", "./appTests/numbers.txt"];
     const expected = ["2", "2", "1", "2", "2"];
     assert.deepStrictEqual(handleCmdLineArg(cmdLineArg), expected);
   });
