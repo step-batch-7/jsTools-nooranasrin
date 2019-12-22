@@ -1,16 +1,16 @@
 const fs = require("fs");
 
 const loadLines = function(fileInfo) {
-  const fileName = fileInfo.fileName;
+  const path = fileInfo.fileName;
   try {
-    return { lines: fileInfo.read(fileName, fileInfo.encoding).split("\n") };
+    return { lines: fileInfo.read(path, fileInfo.encoding).split("\n") };
   } catch (exception) {
-    return { err: `cut: ${fileName}: No such file or directory` };
+    return { err: `cut: ${path}: No such file or directory` };
   }
 };
 
 const getFsTools = function(fileName) {
-  return { fileName, write: fs.readFileSync, encoding: "utf8" };
+  return { fileName, read: fs.readFileSync, encoding: "utf8" };
 };
 
 module.exports = { loadLines, getFsTools };

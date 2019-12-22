@@ -44,7 +44,7 @@ describe("getFsTools", () => {
   it("should give an object with specified format", () => {
     const expected = {
       fileName: "./test",
-      write: fs.readFileSync,
+      read: fs.readFileSync,
       encoding: "utf8"
     };
     const actual = getFsTools("./test");
