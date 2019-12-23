@@ -1,0 +1,18 @@
+node cut.js -f 1 appTests/numbers.txt appTests/number.txt appTests/numbers.txt
+1
+1
+1
+1
+1
+1,2
+1,2,3
+1,2,3,4
+cut: appTests/number.txt: No such file or directory
+1
+1
+1
+1
+1
+1,2
+1,2,3
+1,2,3,4

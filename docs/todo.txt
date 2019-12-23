@@ -218,12 +218,12 @@ Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
-cutFields
-getField
-executeCutCommand
-getFileContent
-getFilesList
-main
+--done-- cutFields
+--done-- getField
+--done-- executeCutCommand
+--done-- getFileContent
+--done-- getFilesList
+--done-- main
 
 --------------------------------------------------------
 v2.1 ) node cut.js -f 2-4 numbers.txt alphabets.txt
@@ -234,12 +234,12 @@ Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
-cutFields
-getFieldsList
-executeCutCommand
-getFileContent
-getFileList
-main
+--done-- cutFields
+--done-- getFieldsList
+--done-- executeCutCommand
+--done-- getFileContent
+--done-- getFileList
+--done-- main
 
 --------------------------------------------------------
 v2.2 ) node cut.js -f 2,4 numbers.txt alphabets.txt
@@ -250,12 +250,12 @@ Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
-cutFields
-getFieldsList
-executeCutCommand
-getFileContent
-getFileList
-main
+--done-- cutFields
+--done-- getFieldsList
+--done-- executeCutCommand
+--done-- getFileContent
+--done-- getFileList
+--done-- main
 
 ----------------------------------------------------------
 v2.3 ) node cut.js -d "." -f 2 numbers.txt  alphabets.txt
@@ -266,13 +266,13 @@ Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
-cutFields
-getSeparator
-getFields
-executeCutCommand
-getFileContent
-getFileList
-main
+--done-- cutFields
+--done-- getSeparator
+--done-- getFields
+--done-- executeCutCommand
+--done-- getFileContent
+--done-- getFileList
+--done-- main
 
 ----------------------------------------------------------
 v2.4 ) node cut.js -d "." -f 2-4 numbers.txt alphabets.txt
@@ -283,13 +283,13 @@ Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
-cutFields
-getSeparator
-getFieldsList
-executeCutCommand
-getFileContent
-getFilesList
-main
+--done-- cutFields
+--done-- getSeparator
+--done-- getFieldsList
+--done-- executeCutCommand
+--done-- getFileContent
+--done-- getFilesList
+--done-- main
 
 ----------------------------------------------------------
 v2.5 ) node cut.js -d "." -f 2,4 numbers.txt alphabets.txt
@@ -300,12 +300,12 @@ Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
-cutFields
-getSeparator
-getFieldsList
-executeCutCommand
-getFileContent
-getFileList
-main
+--done-- cutFields
+--done-- getSeparator
+--done-- getFieldsList
+--done-- executeCutCommand
+--done-- getFileContent
+--done-- getFileList
+--done-- main
 
 ----------------------------------------------------------
