@@ -28,4 +28,17 @@ describe("handleCmdLineArg", () => {
     const expected = ["2  3", "2  ", "1", "2  3", "2  "];
     assert.deepStrictEqual(handleCmdLineArg(cmdLineArg), expected);
   });
+  it("should give the extracted fields when the separator is present in the command line arguments", () => {
+    const cmdLineArg = [
+      "node",
+      "cut.js",
+      "-d",
+      " ",
+      "-f",
+      "2",
+      "./appTests/numbers.txt"
+    ];
+    const expected = ["", "", "1", "", ""];
+    assert.deepStrictEqual(handleCmdLineArg(cmdLineArg), expected);
+  });
 });
