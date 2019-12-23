@@ -43,11 +43,19 @@ const getFileName = function(cmdLineArg) {
   return cmdLineArg[4];
 };
 
+const extractSeparator = function(cmdLineArg, cutInfo) {
+  const separator = cmdLineArg[cmdLineArg.indexOf("-d") + 1];
+  cutInfo.separator = separator;
+  if (!cmdLineArg.includes("-d")) cutInfo.separator = "  ";
+  return cutInfo;
+};
+
 module.exports = {
   splitFields,
   getSplittedFields,
   getFields,
   getFileName,
   getFieldContents,
-  generateFieldList
+  generateFieldList,
+  extractSeparator
 };

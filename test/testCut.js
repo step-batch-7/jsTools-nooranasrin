@@ -6,7 +6,8 @@ const {
   getFields,
   getFileName,
   getFieldContents,
-  generateFieldList
+  generateFieldList,
+  extractSeparator
 } = cut;
 
 describe("cutFields", () => {
@@ -105,6 +106,19 @@ describe("generateFieldList", () => {
   it("should generate a range of values in an array", () => {
     const expected = { fields: ["2", "3", "4", "5"] };
     const actual = generateFieldList({}, [2, 5]);
+    assert.deepStrictEqual(actual, expected);
+  });
+});
+
+describe("extractSeparator", () => {
+  it("should give tab as default separator when separator is not present in command line arguments", () => {
+    const expected = { separator: "  " };
+    const actual = extractSeparator(["hello"], {});
+    assert.deepStrictEqual(actual, expected);
+  });
+  it("should extract the given separator from the command line arguments when the separator is present", () => {
+    const expected = { separator: "," };
+    const actual = extractSeparator(["-d", ","], {});
     assert.deepStrictEqual(actual, expected);
   });
 });

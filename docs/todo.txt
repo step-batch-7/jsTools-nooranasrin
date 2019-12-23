@@ -57,11 +57,11 @@ Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
-cutFields
-getFieldsList
-getFileContent
-getFileName
-main
+--done-- cutFields
+--done-- getFieldsList
+--done-- getFileContent
+--done-- getFileName
+--done-- main
 
 --------------------------------------------------------------------
 v0.4 ) cat numbers.txt | node cut.js -f 2-4 
@@ -87,11 +87,11 @@ Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
-cutFields
-getFieldsList
-getFileContent
-getFileName
-main
+--done-- cutFields
+--done-- getFieldsList
+--done-- getFileContent
+--done-- getFileName
+--done-- main
 
 -------------------------------------------------------------------
 v0.6 ) cat numbers.txt | node cut.js -d "." -f 2,4 
