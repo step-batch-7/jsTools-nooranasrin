@@ -32,7 +32,7 @@ const generateFieldList = function(cutInfo, fieldRange) {
 
 const getFields = function(cutInfo, cmdLineArg) {
   cutInfo.fields = [cmdLineArg[cmdLineArg.indexOf(`-f`) + 1]];
-  const fields = cutInfo.fields[0].split(",");
+  const fields = cutInfo.fields[0].split(",").sort();
   let fieldRange = cutInfo.fields[0].split("-");
   if (fields.length > 1) cutInfo.fields = fields;
   if (fieldRange.length > 1) cutInfo = generateFieldList(cutInfo, fieldRange);
