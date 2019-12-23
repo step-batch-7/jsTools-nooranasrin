@@ -25,16 +25,7 @@ describe("handleCmdLineArg", () => {
       "2,3",
       "./appTests/numbers.txt"
     ];
-    const expected = [
-      "2  3",
-      "2  ",
-      "1",
-      "2  3",
-      "2  ",
-      "1,2",
-      "1,2,3",
-      "1,2,3,4"
-    ];
+    const expected = ["2	3", "2	", "1", "2	3", "2	", "1,2", "1,2,3", "1,2,3,4"];
     assert.deepStrictEqual(handleCmdLineArg(cmdLineArg), expected);
   });
   it("should give the extracted fields when the separator is present in the command line arguments", () => {
@@ -47,16 +38,7 @@ describe("handleCmdLineArg", () => {
       "2",
       "./appTests/numbers.txt"
     ];
-    const expected = [
-      "1  2  3  4  5",
-      "1  2",
-      "1",
-      "1  2  3  4  5",
-      "1  2",
-      "2",
-      "2",
-      "2"
-    ];
+    const expected = ["1	2	3	4	5", "1	2", "1", "1	2	3	4	5", "1	2", "2", "2", "2"];
     assert.deepStrictEqual(handleCmdLineArg(cmdLineArg), expected);
   });
 });

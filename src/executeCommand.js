@@ -16,7 +16,7 @@ const handleCmdLineArg = function(cmdLineArg) {
   cutInfo = getFields(cutInfo, cmdLineArg);
   cutInfo = extractSeparator(cmdLineArg, cutInfo);
   const fieldContents = getSplittedFields(cutInfo);
-  return fieldContents.map(contents => contents.join("  "));
+  return fieldContents.map(contents => contents.join("	"));
 };
 
 module.exports = { handleCmdLineArg };

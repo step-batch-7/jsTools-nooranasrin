@@ -115,7 +115,7 @@ describe("generateFieldList", () => {
 
 describe("extractSeparator", () => {
   it("should give tab as default separator when separator is not present in command line arguments", () => {
-    const expected = { separator: "  " };
+    const expected = { separator: "	" };
     const actual = extractSeparator(["hello"], {});
     assert.deepStrictEqual(actual, expected);
   });

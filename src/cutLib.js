@@ -47,7 +47,7 @@ const getFileName = function(cmdLineArg) {
 const extractSeparator = function(cmdLineArg, cutInfo) {
   const separator = cmdLineArg[cmdLineArg.indexOf("-d") + 1];
   cutInfo.separator = separator;
-  if (!cmdLineArg.includes("-d")) cutInfo.separator = "  ";
+  if (!cmdLineArg.includes("-d")) cutInfo.separator = "	";
   return cutInfo;
 };
 
