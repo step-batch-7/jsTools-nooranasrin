@@ -4,3 +4,6 @@ node cut.js -f 2 ./appTests/numbers.txt
 1
 2
 2
+1,2
+1,2,3
+1,2,3,4
