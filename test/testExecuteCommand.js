@@ -2,7 +2,8 @@ const assert = require("chai").assert;
 const {
   extractFieldContents,
   handleCmdLineArgs,
-  formatMsg
+  formatMsg,
+  executeCut
 } = require("../src/executeCommand");
 
 describe("extractFieldContents", () => {
@@ -157,5 +158,14 @@ describe("formatMsg", () => {
     const separator = ",";
     const line = ["1", "2", undefined];
     assert.deepStrictEqual(formatMsg(separator, line), "1,2");
+  });
+});
+
+describe("executeCommand", () => {
+  it("should give specified field values", () => {
+    const cutInfo = { lines: ["1,2"] };
+    const cmdLineArg = ["-d", ",", "-f", "2"];
+    const actual = executeCut(cutInfo, cmdLineArg);
+    assert.deepStrictEqual(actual, ["2"]);
   });
 });

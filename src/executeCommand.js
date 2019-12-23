@@ -8,15 +8,19 @@ const formatMsg = function(separator, line) {
   return line.join(separator);
 };
 
+const executeCut = function(cutInfo, cmdLineArg) {
+  cutInfo = getFields(cutInfo, cmdLineArg);
+  cutInfo = extractSeparator(cmdLineArg, cutInfo);
+  const fieldContents = getSplittedFields(cutInfo);
+  return fieldContents.map(formatMsg.bind(null, cutInfo.separator));
+};
+
 const extractFieldContents = function(cmdLineArg, fsTools, fileName) {
   fsTools.fileName = fileName;
   let cutInfo = loadLines(fsTools);
   const keys = Object.keys(cutInfo);
   if (keys.includes("err")) return cutInfo.err;
-  cutInfo = getFields(cutInfo, cmdLineArg);
-  cutInfo = extractSeparator(cmdLineArg, cutInfo);
-  const fieldContents = getSplittedFields(cutInfo);
-  return fieldContents.map(formatMsg.bind(null, cutInfo.separator));
+  return executeCut(cutInfo, cmdLineArg);
 };
 
 const handleCmdLineArgs = function(cmdLineArg, fsTools, fileNames) {
@@ -26,4 +30,24 @@ const handleCmdLineArgs = function(cmdLineArg, fsTools, fileNames) {
   return fieldContents.map(contents => contents.join("\n"));
 };
 
-module.exports = { extractFieldContents, handleCmdLineArgs, formatMsg };
+const chooseInputType = function(process, args, fsTools, fileNames) {
+  if (fileNames.length != 0) {
+    process.stdout.write(
+      `${handleCmdLineArgs(args, fsTools, fileNames).join("\n")}`
+    );
+  } else {
+    process.stdin.setEncoding("utf8");
+    process.stdin.on("data", data => {
+      let cutInfo = { lines: [data.trim()] };
+      process.stdout.write(`${executeCut(cutInfo, args)}\n`);
+    });
+  }
+};
+
+module.exports = {
+  extractFieldContents,
+  handleCmdLineArgs,
+  formatMsg,
+  chooseInputType,
+  executeCut
+};
