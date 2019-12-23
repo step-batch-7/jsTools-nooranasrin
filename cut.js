@@ -1,9 +1,9 @@
 const { handleCmdLineArgs, chooseInputType } = require("./src/executeCommand");
 const { getFsTools } = require("./src/fsOperationsLib");
-const { getFileName } = require("./src/cutLib");
+const { extractFileName } = require("./src/cutLib");
 
 const main = function(cmdLineArg) {
-  const fileNames = getFileName(cmdLineArg);
+  const fileNames = extractFileName(cmdLineArg);
   const fsTools = getFsTools();
   chooseInputType(process, cmdLineArg, fsTools, fileNames);
 };

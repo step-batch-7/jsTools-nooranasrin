@@ -1,6 +1,10 @@
 "use strict";
 const { loadLines } = require("./fsOperationsLib");
-const { getFields, getSplittedFields, extractSeparator } = require("./cutLib");
+const {
+  extractFields,
+  getSplittedFields,
+  extractSeparator
+} = require("./cutLib");
 
 const formatMsg = function(separator, line) {
   if (line[line.length - 1] === undefined)
@@ -9,7 +13,7 @@ const formatMsg = function(separator, line) {
 };
 
 const executeCut = function(cutInfo, cmdLineArg) {
-  cutInfo = getFields(cutInfo, cmdLineArg);
+  cutInfo = extractFields(cutInfo, cmdLineArg);
   cutInfo = extractSeparator(cmdLineArg, cutInfo);
   const fieldContents = getSplittedFields(cutInfo);
   return fieldContents.map(formatMsg.bind(null, cutInfo.separator));

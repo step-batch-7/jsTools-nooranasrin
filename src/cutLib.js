@@ -1,15 +1,11 @@
 "use strict";
 
-const getFieldContents = function(contentList, field) {
-  return contentList[+field - 1];
-};
-
 const splitFields = function(fields, separator, line) {
   const contentList = line.split(separator);
   if (contentList.length === 1) {
     return [contentList[0]];
   }
-  return fields.map(getFieldContents.bind(null, contentList));
+  return fields.map(field => contentList[+field - 1]);
 };
 
 const getSplittedFields = function(cutInfo) {
@@ -28,7 +24,7 @@ const generateFieldList = function(cutInfo, fieldRange) {
   return cutInfo;
 };
 
-const getFields = function(cutInfo, cmdLineArg) {
+const extractFields = function(cutInfo, cmdLineArg) {
   cutInfo.fields = [cmdLineArg[cmdLineArg.indexOf(`-f`) + 1]];
   const fields = cutInfo.fields[0].split(",").sort();
   let fieldRange = cutInfo.fields[0].split("-").sort();
@@ -37,7 +33,7 @@ const getFields = function(cutInfo, cmdLineArg) {
   return cutInfo;
 };
 
-const getFileName = function(cmdLineArg) {
+const extractFileName = function(cmdLineArg) {
   if (!cmdLineArg.includes("-d")) return cmdLineArg.slice(4);
   return cmdLineArg.slice(6);
 };
@@ -52,9 +48,8 @@ const extractSeparator = function(cmdLineArg, cutInfo) {
 module.exports = {
   splitFields,
   getSplittedFields,
-  getFields,
-  getFileName,
-  getFieldContents,
+  extractFields,
+  extractFileName,
   generateFieldList,
   extractSeparator
 };

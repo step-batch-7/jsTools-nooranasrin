@@ -3,9 +3,8 @@ const cut = require("../src/cutLib");
 const {
   getSplittedFields,
   splitFields,
-  getFields,
-  getFileName,
-  getFieldContents,
+  extractFields,
+  extractFileName,
   generateFieldList,
   extractSeparator
 } = cut;
@@ -67,32 +66,34 @@ describe("splitFields", () => {
   });
 });
 
-describe("getFields", () => {
+describe("extractFields", () => {
   it("should give an object containing the field value", () => {
     const cmdLineArg = ["node", "-f", "3"];
-    assert.deepStrictEqual(getFields({}, cmdLineArg), { fields: ["3"] });
+    assert.deepStrictEqual(extractFields({}, cmdLineArg), { fields: ["3"] });
   });
   it("should give an object containing field values when the fields contains two values", () => {
     const cmdLineArg = ["node", "-f", "3,5"];
-    assert.deepStrictEqual(getFields({}, cmdLineArg), { fields: ["3", "5"] });
+    assert.deepStrictEqual(extractFields({}, cmdLineArg), {
+      fields: ["3", "5"]
+    });
   });
   it("should give an object containing all the field values when the given field is a range", () => {
     let cmdLineArg = ["node", "-f", "3-5"];
-    assert.deepStrictEqual(getFields({}, cmdLineArg), {
+    assert.deepStrictEqual(extractFields({}, cmdLineArg), {
       fields: ["3", "4", "5"]
     });
 
     cmdLineArg = ["node", "-f", "3-7"];
-    assert.deepStrictEqual(getFields({}, cmdLineArg), {
+    assert.deepStrictEqual(extractFields({}, cmdLineArg), {
       fields: ["3", "4", "5", "6", "7"]
     });
   });
 });
 
-describe("getFileName", () => {
+describe("extractFileName", () => {
   it("should return the elements from 5th position when -d is not present", () => {
     const cmdLineArg = ["node", "cut.js", "-f", "4", "./numbers.txt"];
-    assert.deepStrictEqual(getFileName(cmdLineArg), ["./numbers.txt"]);
+    assert.deepStrictEqual(extractFileName(cmdLineArg), ["./numbers.txt"]);
   });
   it("should return the element from 7th positions when -d is present", () => {
     const cmdLineArg = [
@@ -104,13 +105,7 @@ describe("getFileName", () => {
       "4",
       "./numbers.txt"
     ];
-    assert.deepStrictEqual(getFileName(cmdLineArg), ["./numbers.txt"]);
-  });
-});
-
-describe("getFieldContents", () => {
-  it("should give the corresponding field value when the content is not undefined", () => {
-    assert.deepStrictEqual(getFieldContents(["123", "122"], 1), "123");
+    assert.deepStrictEqual(extractFileName(cmdLineArg), ["./numbers.txt"]);
   });
 });
 
