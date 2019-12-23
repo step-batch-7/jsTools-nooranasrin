@@ -1,7 +1,8 @@
 const assert = require("chai").assert;
 const {
   extractFieldContents,
-  handleCmdLineArgs
+  handleCmdLineArgs,
+  formatMsg
 } = require("../src/executeCommand");
 
 describe("extractFieldContents", () => {
@@ -81,7 +82,7 @@ describe("extractFieldContents", () => {
       "2,3",
       "./appTests/numbers.txt"
     ];
-    const expected = ["2	", "2	3"];
+    const expected = ["2", "2	3"];
     assert.deepStrictEqual(
       extractFieldContents(cmdLineArg, fsTools, "./test/testFile"),
       expected
@@ -143,5 +144,18 @@ describe("handleCmdLineArgs", () => {
     const expected = ["2\n2", "2\n2"];
     const actual = handleCmdLineArgs(cmdLineArg, fsTools, fileNames);
     assert.deepStrictEqual(actual, expected);
+  });
+});
+
+describe("formatMsg", () => {
+  it("should format the given line", () => {
+    const separator = ",";
+    const line = ["1", "2"];
+    assert.deepStrictEqual(formatMsg(separator, line), "1,2");
+  });
+  it("should remove undefined from the end", () => {
+    const separator = ",";
+    const line = ["1", "2", undefined];
+    assert.deepStrictEqual(formatMsg(separator, line), "1,2");
   });
 });

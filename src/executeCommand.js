@@ -2,6 +2,12 @@
 const { loadLines } = require("./fsOperationsLib");
 const { getFields, getSplittedFields, extractSeparator } = require("./cutLib");
 
+const formatMsg = function(separator, line) {
+  if (line[line.length - 1] === undefined)
+    return line.slice(0, -1).join(separator);
+  return line.join(separator);
+};
+
 const extractFieldContents = function(cmdLineArg, fsTools, fileName) {
   fsTools.fileName = fileName;
   let cutInfo = loadLines(fsTools);
@@ -10,7 +16,7 @@ const extractFieldContents = function(cmdLineArg, fsTools, fileName) {
   cutInfo = getFields(cutInfo, cmdLineArg);
   cutInfo = extractSeparator(cmdLineArg, cutInfo);
   const fieldContents = getSplittedFields(cutInfo);
-  return fieldContents.map(contents => contents.join("	"));
+  return fieldContents.map(formatMsg.bind(null, cutInfo.separator));
 };
 
 const handleCmdLineArgs = function(cmdLineArg, fsTools, fileNames) {
@@ -20,4 +26,4 @@ const handleCmdLineArgs = function(cmdLineArg, fsTools, fileNames) {
   return fieldContents.map(contents => contents.join("\n"));
 };
 
-module.exports = { extractFieldContents, handleCmdLineArgs };
+module.exports = { extractFieldContents, handleCmdLineArgs, formatMsg };
