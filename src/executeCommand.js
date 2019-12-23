@@ -9,7 +9,8 @@ const handleCmdLineArg = function(cmdLineArg) {
   const keys = Object.keys(cutInfo);
   if (keys.includes("err")) return cutInfo.err;
   cutInfo = getFields(cutInfo, cmdLineArg);
-  return getSplittedFields(cutInfo);
+  const fieldContents = getSplittedFields(cutInfo);
+  return fieldContents.map(contents => contents.join("  "));
 };
 
 module.exports = { handleCmdLineArg };
