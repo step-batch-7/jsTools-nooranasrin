@@ -6,8 +6,8 @@ const getFieldContents = function(contentList, field) {
   return content;
 };
 
-const splitFields = function(fields, line) {
-  const contentList = line.split("  ");
+const splitFields = function(fields, separator, line) {
+  const contentList = line.split(separator);
   if (contentList.length === 1) {
     return [contentList[0]];
   }
@@ -17,7 +17,8 @@ const splitFields = function(fields, line) {
 const getSplittedFields = function(cutInfo) {
   const lines = cutInfo.lines;
   const fields = cutInfo.fields;
-  return lines.map(splitFields.bind(null, fields));
+  const separator = cutInfo.separator;
+  return lines.map(splitFields.bind(null, fields, separator));
 };
 
 const generateFieldList = function(cutInfo, fieldRange) {
@@ -40,7 +41,7 @@ const getFields = function(cutInfo, cmdLineArg) {
 };
 
 const getFileName = function(cmdLineArg) {
-  return cmdLineArg[4];
+  return cmdLineArg.slice(-1)[0];
 };
 
 const extractSeparator = function(cmdLineArg, cutInfo) {
