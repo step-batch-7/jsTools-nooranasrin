@@ -1,10 +1,7 @@
 "use strict";
 const { loadLines } = require("./fsOperationsLib");
-const {
-  extractFields,
-  getSplittedFields,
-  extractSeparator
-} = require("./cutLib");
+const { getSplittedFields } = require("./cutLib");
+const { extractFields, extractSeparator } = require("./cmdLineArgHandler");
 
 const formatMsg = function(separator, line) {
   if (line[line.length - 1] === undefined)
