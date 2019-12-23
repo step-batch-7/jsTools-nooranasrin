@@ -1,11 +1,11 @@
-const { handleCmdLineArg } = require("./src/executeCommand");
+const { handleCmdLineArgs } = require("./src/executeCommand");
 const { getFsTools } = require("./src/fsOperationsLib");
 const { getFileName } = require("./src/cutLib");
 
 const main = function(cmdLineArg) {
-  const fileName = getFileName(cmdLineArg);
-  const fsTools = getFsTools(fileName);
-  console.log(handleCmdLineArg(cmdLineArg, fsTools).join("\n"));
+  const fileNames = getFileName(cmdLineArg);
+  const fsTools = getFsTools();
+  console.log(handleCmdLineArgs(cmdLineArg, fsTools, fileNames).join("\n"));
 };
 
 main(process.argv);

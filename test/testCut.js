@@ -90,18 +90,27 @@ describe("getFields", () => {
 });
 
 describe("getFileName", () => {
-  it("should return the 5th element of the array", () => {
+  it("should return the elements from 5th position when -d is not present", () => {
     const cmdLineArg = ["node", "cut.js", "-f", "4", "./numbers.txt"];
-    assert.strictEqual(getFileName(cmdLineArg), "./numbers.txt");
+    assert.deepStrictEqual(getFileName(cmdLineArg), ["./numbers.txt"]);
+  });
+  it("should return the element from 7th positions when -d is present", () => {
+    const cmdLineArg = [
+      "node",
+      "cut.js",
+      "-d",
+      ",",
+      "-f",
+      "4",
+      "./numbers.txt"
+    ];
+    assert.deepStrictEqual(getFileName(cmdLineArg), ["./numbers.txt"]);
   });
 });
 
 describe("getFieldContents", () => {
   it("should give the corresponding field value when the content is not undefined", () => {
     assert.deepStrictEqual(getFieldContents(["123", "122"], 1), "123");
-  });
-  it("should give empty string when the content is present", () => {
-    assert.deepStrictEqual(getFieldContents(["123", "122"], 3), "");
   });
 });
 

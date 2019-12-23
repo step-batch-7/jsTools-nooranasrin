@@ -43,11 +43,10 @@ describe("loadLines", () => {
 describe("getFsTools", () => {
   it("should give an object with specified format", () => {
     const expected = {
-      fileName: "./test",
       read: fs.readFileSync,
       encoding: "utf8"
     };
-    const actual = getFsTools("./test");
+    const actual = getFsTools();
     assert.deepStrictEqual(actual, expected);
   });
 });

@@ -153,10 +153,10 @@ modules : chai
 Tasks :-
 --done-- cutFields
 --done-- getSeparator
-getFieldsList
-getFileContent
-getFileName
-main
+--done-- getFieldsList
+--done-- getFileContent
+--done-- getFileName
+--done-- main
 
 ----------------------------------------------------------
 v1.3 ) cat numbers.txt | node cut.js -d "." -f 2-4 
@@ -184,12 +184,12 @@ Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
-cutFields
-getSeparator
-getFieldsList
-getFileContent
-getFileName
-main
+--done-- cutFields
+--done-- getSeparator
+--done-- getFieldsList
+--done-- getFileContent
+--done-- getFileName
+--done-- main
 
 ----------------------------------------------------------
 v1.5 ) cat numbers.txt | node cut.js -d "." -f 2,4 

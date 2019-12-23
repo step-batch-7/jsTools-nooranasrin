@@ -1,9 +1,7 @@
 "use strict";
 
 const getFieldContents = function(contentList, field) {
-  const content = contentList[+field - 1];
-  if (!content) return "";
-  return content;
+  return contentList[+field - 1];
 };
 
 const splitFields = function(fields, separator, line) {
@@ -23,7 +21,6 @@ const getSplittedFields = function(cutInfo) {
 
 const generateFieldList = function(cutInfo, fieldRange) {
   let range = [];
-  fieldRange = fieldRange.sort();
   for (let index = +fieldRange[0]; index <= fieldRange[1]; index++) {
     range.push(index.toString());
   }
@@ -34,14 +31,15 @@ const generateFieldList = function(cutInfo, fieldRange) {
 const getFields = function(cutInfo, cmdLineArg) {
   cutInfo.fields = [cmdLineArg[cmdLineArg.indexOf(`-f`) + 1]];
   const fields = cutInfo.fields[0].split(",").sort();
-  let fieldRange = cutInfo.fields[0].split("-");
+  let fieldRange = cutInfo.fields[0].split("-").sort();
   if (fields.length > 1) cutInfo.fields = fields;
   if (fieldRange.length > 1) cutInfo = generateFieldList(cutInfo, fieldRange);
   return cutInfo;
 };
 
 const getFileName = function(cmdLineArg) {
-  return cmdLineArg.slice(-1)[0];
+  if (!cmdLineArg.includes("-d")) return cmdLineArg.slice(4);
+  return cmdLineArg.slice(6);
 };
 
 const extractSeparator = function(cmdLineArg, cutInfo) {

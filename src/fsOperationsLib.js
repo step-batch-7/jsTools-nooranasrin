@@ -10,8 +10,8 @@ const loadLines = function(fileInfo) {
   }
 };
 
-const getFsTools = function(fileName) {
-  return { fileName, read: fs.readFileSync, encoding: "utf8" };
+const getFsTools = function() {
+  return { read: fs.readFileSync, encoding: "utf8" };
 };
 
 module.exports = { loadLines, getFsTools };
