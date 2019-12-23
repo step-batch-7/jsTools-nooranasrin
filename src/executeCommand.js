@@ -1,3 +1,4 @@
+"use strict";
 const { getFsTools, loadLines } = require("./fsOperationsLib");
 const { getFields, getSplittedFields, getFileName } = require("./cutLib");
 

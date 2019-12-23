@@ -5,7 +5,8 @@ const {
   splitFields,
   getFields,
   getFileName,
-  getFieldContents
+  getFieldContents,
+  generateFieldList
 } = cut;
 
 describe("cutFields", () => {
@@ -97,5 +98,13 @@ describe("getFieldContents", () => {
   });
   it("should give empty string when the content is present", () => {
     assert.deepStrictEqual(getFieldContents(["123", "122"], 3), "");
+  });
+});
+
+describe("generateFieldList", () => {
+  it("should generate a range of values in an array", () => {
+    const expected = { fields: ["2", "3", "4", "5"] };
+    const actual = generateFieldList({}, [2, 5]);
+    assert.deepStrictEqual(actual, expected);
   });
 });
