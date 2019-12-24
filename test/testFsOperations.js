@@ -12,12 +12,11 @@ describe("loadLines", () => {
 
     let fileOperations = {
       read: read,
-      encoding: "utf8",
-      fileName: "./test/testFile"
+      encoding: "utf8"
     };
 
     let expected = { lines: ["hello", "hello"] };
-    let actual = loadLines(fileOperations);
+    let actual = loadLines(fileOperations, "./test/testFile");
     assert.deepStrictEqual(actual, expected);
   });
 
@@ -30,12 +29,11 @@ describe("loadLines", () => {
 
     let fileOperations = {
       read: read,
-      encoding: "utf8",
-      fileName: "./test/testFile"
+      encoding: "utf8"
     };
 
-    let expected = { err: [`cut: ./test/testFile: No such file or directory`] };
-    let actual = loadLines(fileOperations);
+    let expected = { err: `cut: ./test/testFile: No such file or directory` };
+    let actual = loadLines(fileOperations, "./test/testFile");
     assert.deepStrictEqual(actual, expected);
   });
 });

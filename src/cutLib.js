@@ -1,16 +1,15 @@
 "use strict";
 
-const splitFields = function(fields, separator, line) {
-  const contentList = line.split(separator);
-  if (contentList.length === 1) return [contentList[0]];
-  return fields.map(field => contentList[+field - 1]);
+const getFieldContents = function(field, line) {
+  const contentList = line.split("\t");
+  if (contentList.length === 1) return contentList[0];
+  return contentList[+field - 1];
 };
 
-const getSplittedFields = function(cutInfo) {
-  const lines = cutInfo.lines;
-  const fields = cutInfo.fields;
-  const separator = cutInfo.separator;
-  return lines.map(splitFields.bind(null, fields, separator));
+const splitFields = function(cutInfo) {
+  const lines = cutInfo.contents.lines;
+  const field = cutInfo.field;
+  return lines.map(getFieldContents.bind(null, field));
 };
 
-module.exports = { splitFields, getSplittedFields };
+module.exports = { getFieldContents, splitFields };
