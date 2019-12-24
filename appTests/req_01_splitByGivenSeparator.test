@@ -1,0 +1,4 @@
+node cut.js -f 2 -d "," ./appTests/numbers.txt
+2
+2
+2
