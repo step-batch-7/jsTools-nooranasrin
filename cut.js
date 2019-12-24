@@ -1,4 +1,4 @@
-const { handleCmdLineArgs, chooseInputType } = require("./src/executeCommand");
+const { chooseInputType } = require("./src/executeCommand");
 const { getFsTools } = require("./src/fsOperationsLib");
 const { extractFileName } = require("./src/cmdLineArgHandler");
 

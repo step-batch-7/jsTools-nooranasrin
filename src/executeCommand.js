@@ -9,6 +9,11 @@ const formatMsg = function(separator, line) {
   return line.join(separator);
 };
 
+const handleStdIn = function(args, userInput) {
+  let cutInfo = { lines: [userInput.trim()] };
+  process.stdout.write(`${executeCut(cutInfo, args)}\n`);
+};
+
 const executeCut = function(cutInfo, cmdLineArg) {
   cutInfo = extractFields(cutInfo, cmdLineArg);
   cutInfo = extractSeparator(cmdLineArg, cutInfo);
@@ -38,10 +43,7 @@ const chooseInputType = function(process, args, fsTools, fileNames) {
     );
   } else {
     process.stdin.setEncoding("utf8");
-    process.stdin.on("data", data => {
-      let cutInfo = { lines: [data.trim()] };
-      process.stdout.write(`${executeCut(cutInfo, args)}\n`);
-    });
+    process.stdin.on("data", handleStdIn.bind(null, args));
   }
 };
 
