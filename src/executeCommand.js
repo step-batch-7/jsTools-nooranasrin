@@ -7,7 +7,7 @@ const executeCut = function(cmdLineArgs, fsTools) {
   const cutInfo = parseCmdLineArgs(cmdLineArgs);
   if (cutInfo.error) return { error: cutInfo.error };
   cutInfo.contents = loadLines(fsTools, cutInfo.fileName);
-  if (cutInfo.contents.err) return { error: cutInfo.contents.err };
+  if (cutInfo.contents.error) return { error: cutInfo.contents.error };
   return { msg: splitFields(cutInfo) };
 };
 

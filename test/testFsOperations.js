@@ -32,7 +32,7 @@ describe("loadLines", () => {
       encoding: "utf8"
     };
 
-    let expected = { err: `cut: ./test/testFile: No such file or directory` };
+    let expected = { error: `cut: ./test/testFile: No such file or directory` };
     let actual = loadLines(fileOperations, "./test/testFile");
     assert.deepStrictEqual(actual, expected);
   });

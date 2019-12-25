@@ -10,7 +10,8 @@ const generateErrorMessage = function(errorType, option) {
     fieldMissing: `usage: cut -f list [-d delim] [file]`,
     zeroField: `cut: [-cf] list: values may not include zero`,
     notNumber: `cut: [-cf] list: illegal list value`,
-    undefinedField: `cut: option requires an argument -- ${option}\nusage:cut -f list [-s] [-d delim] [file ...]`
+    undefinedField: `cut: option requires an argument -- ${option}\nusage:cut -f list [-s] [-d delim] [file ...]`,
+    fileMissing: `cut: ${option}: No such file or directory`
   };
   return { error: messages[errorType] };
 };
