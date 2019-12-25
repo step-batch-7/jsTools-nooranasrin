@@ -1,0 +1,3 @@
+node cut.js -d "," appTests/numbers.txt
+usage: cut -f list [-d delim] [file]
+
