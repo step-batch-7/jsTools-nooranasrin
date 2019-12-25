@@ -1,12 +1,12 @@
 const { executeCut } = require("./src/executeCommand");
 const { getFsTools } = require("./src/fsOperationsLib");
-const { stdout } = process;
+const { stdout, stderr } = process;
 
 const main = function(cmdLineArg) {
   const fsTools = getFsTools();
   const extractedFields = executeCut(cmdLineArg, fsTools);
-  extractedFields.error && console.error(extractedFields.error);
-  extractedFields.msg && stdout.write(extractedFields.msg.join("\n"));
+  stdout.write(extractedFields.msg);
+  stderr.write(`${extractedFields.error}\n`);
 };
 
 main(process.argv);

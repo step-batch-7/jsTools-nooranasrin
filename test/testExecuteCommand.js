@@ -14,7 +14,7 @@ describe("executeCut", () => {
     };
 
     const cutInfo = ["node", "cut.js", "-f", "2", "-d", ",", "./test/testFile"];
-    const expected = { msg: ["2", "2"] };
+    const expected = { msg: "2\n2", error: "" };
     assert.deepStrictEqual(executeCut(cutInfo, fsTools), expected);
   });
   it("should give the corresponding error message  when the field is not given", () => {
@@ -30,7 +30,7 @@ describe("executeCut", () => {
     };
 
     const cutInfo = ["node", "cut.js", "2", "-d", ",", "./test/testFile"];
-    const expected = { error: `usage: cut -f list [-d delim] [file]` };
+    const expected = { error: `usage: cut -f list [-d delim] [file]`, msg: "" };
     assert.deepStrictEqual(executeCut(cutInfo, fsTools), expected);
   });
   it("should give the corresponding error message  when the file is missing", () => {
@@ -47,7 +47,8 @@ describe("executeCut", () => {
 
     const cutInfo = ["node", "cut.js", "-f", "2", "-d", ",", "./test/testFile"];
     const expected = {
-      error: `cut: ./test/testFile: No such file or directory`
+      error: `cut: ./test/testFile: No such file or directory`,
+      msg: ""
     };
     assert.deepStrictEqual(executeCut(cutInfo, fsTools), expected);
   });
