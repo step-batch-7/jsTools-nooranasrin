@@ -44,13 +44,15 @@ describe("extractField", () => {
 
 describe("extractSeparator", () => {
   it("should extract the separator when the separator is valid", () => {
-    assert.deepStrictEqual(extractSeparator(["-d", ","]), ",");
+    assert.deepStrictEqual(extractSeparator(["-d", ","], {}), {
+      separator: ","
+    });
   });
   it("should generate corresponding error message when no separator is specified after -d", () => {
     const expected = {
       error: `cut: option requires an argument -- d\nusage:cut -f list [-s] [-d delim] [file ...]`
     };
-    assert.deepStrictEqual(extractSeparator(["-d"]), expected);
+    assert.deepStrictEqual(extractSeparator(["-d"], {}), expected);
   });
 });
 

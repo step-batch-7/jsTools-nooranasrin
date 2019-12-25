@@ -1,6 +1,6 @@
 const parseCmdLineArgs = function(cmdLineArgs) {
-  const cutInfo = extractField(cmdLineArgs);
-  cutInfo.separator = extractSeparator(cmdLineArgs);
+  let cutInfo = extractField(cmdLineArgs);
+  cutInfo = extractSeparator(cmdLineArgs, cutInfo);
   cutInfo.fileName = cmdLineArgs[cmdLineArgs.length - 1];
   return cutInfo;
 };
@@ -15,11 +15,12 @@ const generateErrorMessage = function(errorType, option) {
   return { error: messages[errorType] };
 };
 
-const extractSeparator = function(args) {
+const extractSeparator = function(args, cutInfo) {
   const separator = args[args.indexOf("-d") + 1];
   if (separator === undefined)
     return generateErrorMessage("undefinedField", "d");
-  return separator;
+  cutInfo.separator = separator;
+  return cutInfo;
 };
 
 const extractField = function(args) {
