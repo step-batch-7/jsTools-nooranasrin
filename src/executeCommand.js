@@ -25,4 +25,4 @@ const executeCut = function(cmdLineArgs, read, onComplete) {
   else loadLines(cutOptions, read, onComplete);
 };
 
-module.exports = { executeCut, loadLines };
+module.exports = { executeCut };

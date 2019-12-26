@@ -1,5 +1,5 @@
 const assert = require("chai").assert;
-const { executeCut, loadLines } = require("../src/executeCommand");
+const { executeCut } = require("../src/executeCommand");
 describe("executeCut", () => {
   it("should give the corresponding error message  when the field is not given", () => {
     const read = function() {};
@@ -22,34 +22,15 @@ describe("executeCut", () => {
     const read = function(filePath, encoding, callBack) {
       assert.equal(filePath, "./test/testFile");
       assert.equal(encoding, "utf8");
-      callBack("abcd", null);
+      callBack(null, "1,2,3");
     };
 
     const onComplete = (error, content) => {
-      assert.equal(error, `cut: ./test/testFile: No such file or directory`);
-      assert.equal(content, "");
+      assert.equal(error, "");
+      assert.equal(content, "2");
     };
 
     const actual = executeCut(cmdLineArg, read, onComplete);
-    assert.deepStrictEqual(actual, undefined);
-  });
-});
-
-describe("loadLines", () => {
-  it("should extract the specified fields", () => {
-    const read = function(filePath, encoding, callBack) {
-      assert.equal(filePath, "./test/testFile");
-      assert.equal(encoding, "utf8");
-      callBack(null, "1,2\n1,2");
-    };
-
-    const onComplete = (error, field) => {
-      assert.equal(field, "2\n2");
-      assert.equal(error, "");
-    };
-
-    const cutInfo = { fileName: "./test/testFile", field: "2", separator: "," };
-    const actual = loadLines(cutInfo, read, onComplete);
     assert.deepStrictEqual(actual, undefined);
   });
   it("should give error when the file is not exist", () => {
@@ -64,8 +45,16 @@ describe("loadLines", () => {
       assert.equal(content, "");
     };
 
-    const cutInfo = { fileName: "./test/testFile" };
-    const actual = loadLines(cutInfo, read, onComplete);
+    const cmdLineArg = [
+      "node",
+      "cut.js",
+      "-f",
+      "2",
+      "-d",
+      ",",
+      "./test/testFile"
+    ];
+    const actual = executeCut(cmdLineArg, read, onComplete);
     assert.deepStrictEqual(actual, undefined);
   });
 });
