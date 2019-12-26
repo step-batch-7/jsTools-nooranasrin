@@ -6,9 +6,10 @@ const getFieldContents = function(field, separator, line) {
   return contentList[+field - 1];
 };
 
-const splitFields = function(cutDetails, lines) {
+const splitFields = function(cutDetails, contents) {
   const field = cutDetails.field;
   const separator = cutDetails.separator;
+  const lines = contents.split("\n");
   return lines.map(getFieldContents.bind(null, field, separator));
 };
 

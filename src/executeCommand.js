@@ -9,8 +9,7 @@ const loadLines = function(cutOptions, read, onComplete) {
     onComplete(`cut: ${fileName}: No such file or directory`, EMPTY_STRING);
   };
   const respondWithLines = content => {
-    const lines = content.split("\n");
-    const requiredFields = splitFields(cutOptions, lines).join("\n");
+    const requiredFields = splitFields(cutOptions, content).join("\n");
     onComplete("", requiredFields);
   };
 

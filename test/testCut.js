@@ -8,8 +8,8 @@ describe("splitFields", () => {
       field: 2,
       separator: ";"
     };
-    const lines = ["1,2,3"];
-    const actual = splitFields(cutInfo, lines);
+    const contents = "1,2,3";
+    const actual = splitFields(cutInfo, contents);
     assert.deepStrictEqual(actual, ["1,2,3"]);
   });
   it("should give the field contents when the separator is present", () => {
@@ -17,8 +17,8 @@ describe("splitFields", () => {
       field: 2,
       separator: ","
     };
-    const lines = ["1,2,3"];
-    const actual = splitFields(cutInfo, lines);
+    const contents = "1,2,3";
+    const actual = splitFields(cutInfo, contents);
     assert.deepStrictEqual(actual, ["2"]);
   });
 });
