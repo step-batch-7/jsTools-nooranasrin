@@ -3,16 +3,15 @@ const { splitFields } = require("./cutLib");
 const { parseCmdLineArgs } = require("./cmdLineArgHandler");
 const { generateErrorMessage } = require("./cmdLineArgHandler");
 
-const handleCmdLineArg = function(cutInfo, fsTools, print) {
-  const fileName = cutInfo.fileName;
+const handleCmdLineArg = function(cutDetails, fsTools, print) {
+  const fileName = cutDetails.fileName;
+  const { showFields, showError } = print;
   fsTools.read(fileName, fsTools.encoding, (error, content) => {
     if (content) {
-      cutInfo.contents = { lines: content.split("\n") };
-      print.showFields(splitFields(cutInfo).join("\n"));
+      cutDetails.contents = { lines: content.split("\n") };
+      showFields(splitFields(cutDetails).join("\n"));
     } else {
-      print.showError(
-        generateErrorMessage("fileMissing", cutInfo.fileName).error
-      );
+      showError(generateErrorMessage("fileMissing", cutDetails.fileName).error);
     }
   });
 };
