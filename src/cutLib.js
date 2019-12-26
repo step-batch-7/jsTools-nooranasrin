@@ -7,8 +7,7 @@ const getFieldContents = function(field, separator, line) {
 };
 
 const splitFields = function(cutDetails, contents) {
-  const field = cutDetails.field;
-  const separator = cutDetails.separator;
+  const { field, separator } = cutDetails;
   const lines = contents.split("\n");
   return lines.map(getFieldContents.bind(null, field, separator));
 };
