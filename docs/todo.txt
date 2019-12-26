@@ -1,24 +1,15 @@
-1 ) node cut.js -f 2 numbers.txt
-2 ) cat numbers.txt | node cut.js -f 2 
-3 ) node cut.js -f 2-4 numbers.txt
-4 ) cat numbers.txt | node cut.js -f 2-4 
-5 ) node cut.js -f 2,4 numbers.txt
-6 ) cat numbers.txt | node cut.js -f 2,4 
-7 ) node cut.js -d "." -f 2 numbers.txt
-8 ) cat numbers.txt | node cut.js -d "." -f 2 
-9 ) node cut.js -d "." -f 2-4 numbers.txt
-10) cat numbers.txt | node cut.js -d "." -f 2-4 
-11) node cut.js -d "." -f 2,4 numbers.txt
-12) cat numbers.txt | node cut.js -d "." -f 2,4 
-13) node cut.js -f 2 numbers.txt alphabets.txt 
-14) node cut.js -f 2-4 numbers.txt alphabets.txt
-15) node cut.js -f 2,4 numbers.txt alphabets.txt
-16) node cut.js -d "." -f 2 numbers.txt  alphabets.txt
-17) node cut.js -d "." -f 2-4 numbers.txt alphabets.txt
-18) node cut.js -d "." -f 2,4 numbers.txt alphabets.txt 
+1 ) node cut.js -f 2 -d "," numbers.txt
+2 ) cat numbers.txt | node cut.js -f 2 -d ","
+3 ) node cut.js -d "." -f 2-4 numbers.txt
+4) cat numbers.txt | node cut.js -d "." -f 2-4 
+5) node cut.js -d "." -f 2,4 numbers.txt
+6) cat numbers.txt | node cut.js -d "." -f 2,4 
+7) node cut.js -d "." -f 2 numbers.txt  alphabets.txt
+8) node cut.js -d "." -f 2-4 numbers.txt alphabets.txt
+9) node cut.js -d "." -f 2,4 numbers.txt alphabets.txt 
 
 ------------------------------------------------------------
-v0.1 ) node cut.js -f 2 numbers.txt
+v0.1 ) node cut.js -f 2 -d "," numbers.txt
 
 setup :- 
 Directories : src, test
@@ -28,9 +19,12 @@ modules : chai
 Tasks :-
 --done-- getFieldContents
 --done-- splitFields
---done-- extractFieldContents
 --done-- loadLines
+--done-- extractSeparator
+--done-- extractField
+--done-- parseCommandLineArgs
 --done-- executeCut
 --done-- getFsTools
 --done-- main
 
+--------------------------------------------------------------
