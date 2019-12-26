@@ -1,11 +1,12 @@
 "use strict";
 const { splitFields } = require("./cutLib");
 const { parseCmdLineArgs } = require("./parseCmdLineArgs");
+const EMPTY_STRING = "";
 
 const loadLines = function(cutOptions, read, onComplete) {
   const { fileName } = cutOptions;
   const respondWithError = err => {
-    onComplete(`cut: ${fileName}: No such file or directory`, "");
+    onComplete(`cut: ${fileName}: No such file or directory`, EMPTY_STRING);
   };
   const respondWithLines = content => {
     const lines = content.split("\n");
@@ -21,7 +22,7 @@ const loadLines = function(cutOptions, read, onComplete) {
 
 const executeCut = function(cmdLineArgs, read, onComplete) {
   const { cutOptions, error } = parseCmdLineArgs(cmdLineArgs);
-  if (error) onComplete(error, "");
+  if (error) onComplete(error, EMPTY_STRING);
   else loadLines(cutOptions, read, onComplete);
 };
 
