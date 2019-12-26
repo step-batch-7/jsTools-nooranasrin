@@ -6,11 +6,10 @@ const getFieldContents = function(field, separator, line) {
   return contentList[+field - 1];
 };
 
-const splitFields = function(cutDetails) {
-  const lines = cutDetails.lines;
+const splitFields = function(cutDetails, lines) {
   const field = cutDetails.field;
   const separator = cutDetails.separator;
   return lines.map(getFieldContents.bind(null, field, separator));
 };
 
-module.exports = { getFieldContents, splitFields };
+module.exports = { splitFields };
