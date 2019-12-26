@@ -1,21 +1,13 @@
 const assert = require("chai").assert;
-const { executeCut, handleCmdLineArg } = require("../src/executeCommand");
+const { executeCut, loadLines } = require("../src/executeCommand");
 describe("executeCut", () => {
   it("should give the corresponding error message  when the field is not given", () => {
     const read = function() {};
 
-    const showError = () => {};
-    const showFields = () => {};
-    const print = { showError, showFields };
-
-    const fsTools = {
-      read: read,
-      encoding: "utf8"
-    };
-
+    const onComplete = () => {};
     const cmdLineArg = ["node", "cut.js", "2", "-d", ",", "./test/testFile"];
     const expected = undefined;
-    assert.deepStrictEqual(executeCut(cmdLineArg, fsTools, print), expected);
+    assert.deepStrictEqual(executeCut(cmdLineArg, read, onComplete), expected);
   });
   it("should give the expected fields", () => {
     const cmdLineArg = [
@@ -33,22 +25,17 @@ describe("executeCut", () => {
       callBack("abcd", null);
     };
 
-    const showError = error => {
+    const onComplete = (error, content) => {
       assert.equal(error, `cut: ./test/testFile: No such file or directory`);
+      assert.equal(content, "");
     };
-    const showFields = () => {};
-    const print = { showError, showFields };
 
-    const fsTools = {
-      read: read,
-      encoding: "utf8"
-    };
-    const actual = executeCut(cmdLineArg, fsTools, print);
+    const actual = executeCut(cmdLineArg, read, onComplete);
     assert.deepStrictEqual(actual, undefined);
   });
 });
 
-describe("handleCmdLineArg", () => {
+describe("loadLines", () => {
   it("should extract the specified fields", () => {
     const read = function(filePath, encoding, callBack) {
       assert.equal(filePath, "./test/testFile");
@@ -56,19 +43,13 @@ describe("handleCmdLineArg", () => {
       callBack(null, "1,2\n1,2");
     };
 
-    const showError = () => {};
-    const showFields = field => {
+    const onComplete = (error, field) => {
       assert.equal(field, "2\n2");
-    };
-    const print = { showError, showFields };
-
-    const fsTools = {
-      read: read,
-      encoding: "utf8"
+      assert.equal(error, "");
     };
 
     const cutInfo = { fileName: "./test/testFile", field: "2", separator: "," };
-    const actual = handleCmdLineArg(cutInfo, fsTools, print);
+    const actual = loadLines(cutInfo, read, onComplete);
     assert.deepStrictEqual(actual, undefined);
   });
   it("should give error when the file is not exist", () => {
@@ -78,19 +59,13 @@ describe("handleCmdLineArg", () => {
       callBack("abcd", null);
     };
 
-    const showError = error => {
+    const onComplete = (error, content) => {
       assert.equal(error, `cut: ./test/testFile: No such file or directory`);
-    };
-    const showFields = () => {};
-    const print = { showError, showFields };
-
-    const fsTools = {
-      read: read,
-      encoding: "utf8"
+      assert.equal(content, "");
     };
 
     const cutInfo = { fileName: "./test/testFile" };
-    const actual = handleCmdLineArg(cutInfo, fsTools, print);
+    const actual = loadLines(cutInfo, read, onComplete);
     assert.deepStrictEqual(actual, undefined);
   });
 });

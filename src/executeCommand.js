@@ -3,30 +3,25 @@ const { splitFields } = require("./cutLib");
 const { parseCmdLineArgs } = require("./cmdLineArgHandler");
 const { generateErrorMessage } = require("./cmdLineArgHandler");
 
-const handleCmdLineArg = function(cutDetails, fsTools, print) {
-  const fileName = cutDetails.fileName;
-  const { showFields, showError } = print;
-  fsTools.read(fileName, fsTools.encoding, (error, content) => {
-    if (content) {
-      cutDetails.contents = { lines: content.split("\n") };
-      showFields(splitFields(cutDetails).join("\n"));
-    } else {
-      showError(generateErrorMessage("fileMissing", cutDetails.fileName).error);
+const loadLines = function(cutOptions, read, onComplete) {
+  const fileName = cutOptions.fileName;
+  read(fileName, "utf8", (error, content) => {
+    if (error)
+      onComplete(generateErrorMessage("fileMissing", fileName).error, "");
+    else {
+      cutOptions.lines = content.split("\n");
+      onComplete("", splitFields(cutOptions).join("\n"));
     }
   });
 };
 
-const executeCut = function(cmdLineArgs, fsTools, print) {
-  const cutInfo = parseCmdLineArgs(cmdLineArgs);
-  if (cutInfo.error) {
-    print.showError(cutInfo.error);
-    return;
-  }
-  handleCmdLineArg(cutInfo, fsTools, print);
-  return;
+const executeCut = function(cmdLineArgs, read, onComplete) {
+  const { cutOptions, error } = parseCmdLineArgs(cmdLineArgs);
+  if (error) return onComplete(error, "");
+  return loadLines(cutOptions, read, onComplete);
 };
 
 module.exports = {
   executeCut,
-  handleCmdLineArg
+  loadLines
 };

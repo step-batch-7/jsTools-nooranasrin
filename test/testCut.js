@@ -24,7 +24,7 @@ describe("splitFields", () => {
   it("should give the line when the separator is not present", () => {
     const cutInfo = {
       field: 2,
-      contents: { lines: ["1,2,3"] },
+      lines: ["1,2,3"],
       separator: ";"
     };
     const actual = splitFields(cutInfo);
@@ -33,7 +33,7 @@ describe("splitFields", () => {
   it("should give the field contents when the separator is present", () => {
     const cutInfo = {
       field: 2,
-      contents: { lines: ["1,2,3"] },
+      lines: ["1,2,3"],
       separator: ","
     };
     const actual = splitFields(cutInfo);

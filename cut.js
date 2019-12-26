@@ -1,13 +1,13 @@
 const { executeCut } = require("./src/executeCommand");
 const fs = require("fs");
-const { stdout, stderr } = process;
+const { stdout } = process;
 
-const main = function(cmdLineArg) {
-  const showError = error => stderr.write(`${error}\n`);
-  const showFields = fields => stdout.write(`${fields}\n`);
-  const print = { showError, showFields };
-  const fsTools = { read: fs.readFile, encoding: "utf8" };
-  executeCut(cmdLineArg, fsTools, print);
+const main = function(cmdLineArgs) {
+  const onComplete = (error, content) => {
+    stdout.write(content);
+    console.error(error);
+  };
+  executeCut(cmdLineArgs, fs.readFile, onComplete);
 };
 
 main(process.argv);
