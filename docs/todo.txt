@@ -20,11 +20,17 @@ Tasks :-
 --done-- getFieldContents
 --done-- splitFields
 --done-- loadLines
---done-- extractSeparator
---done-- extractField
 --done-- parseCommandLineArgs
 --done-- executeCut
---done-- getFsTools
 --done-- main
 
 --------------------------------------------------------------
+
+v0.2 ) cat numbers.txt | node cut.js -f 2 -d ","
+
+getFieldContents
+splitFields
+selectStream
+parseCommandLineArgs
+executeCut
+main
