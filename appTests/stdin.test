@@ -1,0 +1,5 @@
+cat appTests/numbers.txt | node cut.js -f 2 -d ","
+2
+2
+2
+
