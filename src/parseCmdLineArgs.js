@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
 const parseCmdLineArgs = function(args) {
-  const field = args[args.indexOf("-f") + 1];
-  const separator = args[args.indexOf("-d") + 1];
+  const field = args[args.indexOf('-f') + 1];
+  const separator = args[args.indexOf('-d') + 1];
   const { error } = validateArgs(args, field);
   if (error) return { error };
   const fileName = args[6];
@@ -17,7 +17,7 @@ const errorMessage = {
 };
 
 const validateArgs = function(args, field) {
-  if (!args.includes("-f")) return { error: errorMessage.fieldMissing };
+  if (!args.includes('-f')) return { error: errorMessage.fieldMissing };
   if (+field === 0) return { error: errorMessage.zeroField };
   if (field === undefined) return { error: errorMessage.undefinedField };
   if (!Number.isInteger(+field)) return { error: errorMessage.notNumber };

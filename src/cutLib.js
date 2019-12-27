@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const getFieldContents = function(field, separator, line) {
   const contentList = line.split(separator);
@@ -8,7 +8,7 @@ const getFieldContents = function(field, separator, line) {
 
 const splitFields = function(cutDetails, contents) {
   const { field, separator } = cutDetails;
-  const lines = contents.split("\n");
+  const lines = contents.split('\n');
   return lines.map(getFieldContents.bind(null, field, separator));
 };
 

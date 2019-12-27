@@ -1,34 +1,40 @@
-"use strict";
-const { splitFields } = require("./cutLib");
-const { parseCmdLineArgs } = require("./parseCmdLineArgs");
-const EMPTY_STRING = "";
+'use strict';
+const { splitFields } = require('./cutLib');
+const { parseCmdLineArgs } = require('./parseCmdLineArgs');
+const EMPTY_STRING = '';
 
 const errors = {
-  ENOENT: "cut: No such file or directory",
-  EISDIR: "cut: Error reading",
-  EACCES: "cut: Permission denied"
+  ENOENT: 'cut: No such file or directory',
+  EISDIR: 'cut: Error reading',
+  EACCES: 'cut: Permission denied'
 };
 
-const loadLines = function(cutOptions, read, onComplete) {
-  const { fileName } = cutOptions;
-  const respondWithError = err => {
-    onComplete(errors[err.code] || errors[`ENOENT`], EMPTY_STRING);
-  };
-  const respondWithLines = content => {
-    const requiredFields = splitFields(cutOptions, content).join("\n");
-    onComplete("", requiredFields);
-  };
-
-  read(fileName, "utf8", (error, content) => {
-    if (error) respondWithError(error);
-    else respondWithLines(content);
-  });
+const selectStream = function(cutOptions, fileReadStream, stdin) {
+  if (cutOptions.fileName) return fileReadStream(cutOptions.fileName);
+  return stdin;
 };
 
-const executeCut = function(cmdLineArgs, read, onComplete) {
+const respondWithContent = function(onComplete, content) {
+  const requiredFields = splitFields(this, content).join('\n');
+  onComplete('', requiredFields);
+};
+
+const respondWithError = function(onComplete, error) {
+  onComplete(errors[error.code] || errors[`ENOENT`], EMPTY_STRING);
+};
+
+const onStream = function(stream, cutOptions, onComplete) {
+  stream.setEncoding('utf8');
+  stream.on('data', respondWithContent.bind(cutOptions, onComplete));
+  stream.on('error', respondWithError.bind(null, onComplete));
+  return;
+};
+
+const executeCut = function(cmdLineArgs, fileReadStream, stdin, onComplete) {
   const { cutOptions, error } = parseCmdLineArgs(cmdLineArgs);
-  if (error) onComplete(error, EMPTY_STRING);
-  else loadLines(cutOptions, read, onComplete);
+  if (error) return onComplete(error, EMPTY_STRING);
+  const stream = selectStream(cutOptions, fileReadStream, stdin);
+  return onStream(stream, cutOptions, onComplete);
 };
 
 module.exports = { executeCut };

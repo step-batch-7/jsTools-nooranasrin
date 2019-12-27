@@ -22,5 +22,8 @@
   "homepage": "https://github.com/step-batch-7/jsTools-nooranasrin#readme",
   "dependencies": {
     "chai": "^4.2.0"
+  },
+  "devDependencies": {
+    "sinon": "^8.0.1"
   }
 }
