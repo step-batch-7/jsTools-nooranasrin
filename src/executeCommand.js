@@ -3,10 +3,16 @@ const { splitFields } = require("./cutLib");
 const { parseCmdLineArgs } = require("./parseCmdLineArgs");
 const EMPTY_STRING = "";
 
+const errors = {
+  ENOENT: "cut: No such file or directory",
+  EISDIR: "cut: Error reading",
+  EACCES: "cut: Permission denied"
+};
+
 const loadLines = function(cutOptions, read, onComplete) {
   const { fileName } = cutOptions;
   const respondWithError = err => {
-    onComplete(`cut: ${fileName}: No such file or directory`, EMPTY_STRING);
+    onComplete(errors[err.code], EMPTY_STRING);
   };
   const respondWithLines = content => {
     const requiredFields = splitFields(cutOptions, content).join("\n");
