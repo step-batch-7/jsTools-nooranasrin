@@ -5,7 +5,7 @@ describe("parseCmdLineArgs", () => {
   it("should give an object containing the field value,separator and fileName", () => {
     const cmdLineArg = ["node", "-f", "3", "-d", ",", "cut.js"];
     const expected = {
-      cutOptions: { field: "3", separator: ",", fileName: "cut.js" }
+      cutOptions: { field: "3", separator: ",", fileName: undefined }
     };
     assert.deepStrictEqual(parseCmdLineArgs(cmdLineArg), expected);
   });

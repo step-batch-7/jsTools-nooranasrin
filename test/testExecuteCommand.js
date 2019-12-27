@@ -108,4 +108,29 @@ describe("executeCut", () => {
     const actual = executeCut(cmdLineArg, read, onComplete);
     assert.deepStrictEqual(actual, undefined);
   });
+
+  it("should give ENOENT error for all other kinds of errors", () => {
+    const read = function(filePath, encoding, callBack) {
+      assert.equal(filePath, "./test/testFile");
+      assert.equal(encoding, "utf8");
+      callBack({ code: `ABCD` }, null);
+    };
+
+    const onComplete = (error, content) => {
+      assert.equal(error, `cut: No such file or directory`);
+      assert.equal(content, "");
+    };
+
+    const cmdLineArg = [
+      "node",
+      "cut.js",
+      "-f",
+      "2",
+      "-d",
+      ",",
+      "./test/testFile"
+    ];
+    const actual = executeCut(cmdLineArg, read, onComplete);
+    assert.deepStrictEqual(actual, undefined);
+  });
 });

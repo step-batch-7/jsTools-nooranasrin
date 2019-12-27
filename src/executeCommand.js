@@ -12,7 +12,7 @@ const errors = {
 const loadLines = function(cutOptions, read, onComplete) {
   const { fileName } = cutOptions;
   const respondWithError = err => {
-    onComplete(errors[err.code], EMPTY_STRING);
+    onComplete(errors[err.code] || errors[`ENOENT`], EMPTY_STRING);
   };
   const respondWithLines = content => {
     const requiredFields = splitFields(cutOptions, content).join("\n");
