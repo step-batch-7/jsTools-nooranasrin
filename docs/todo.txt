@@ -17,20 +17,24 @@ Files : cut.js, cutLib.js, testCut.js, package.json, appTest
 modules : chai
 
 Tasks :-
---done-- getFieldContents
---done-- splitFields
---done-- loadLines
---done-- parseCommandLineArgs
---done-- executeCut
---done-- main
+✅ getFieldContents
+✅ splitFields
+✅ loadLines
+✅ parseCommandLineArgs
+✅ executeCut
+✅ main
 
 --------------------------------------------------------------
 
 v0.2 ) cat numbers.txt | node cut.js -f 2 -d ","
 
-getFieldContents
-splitFields
-selectStream
-parseCommandLineArgs
-executeCut
-main
+✅ getFieldContents
+✅ splitFields
+✅ respondWithContent
+✅ respondWithError
+✅ selectStream
+✅ parseCommandLineArgs
+✅ executeCut
+✅ main
+
+-------------------------------------------------------------
