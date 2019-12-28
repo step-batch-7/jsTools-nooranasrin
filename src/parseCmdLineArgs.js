@@ -2,9 +2,9 @@
 
 const parseCmdLineArgs = function(args) {
   const field = args[args.indexOf('-f') + 1];
-  const separator = args[args.indexOf('-d') + 1];
   const { error } = validateArgs(args, field);
   if (error) return { error };
+  const separator = args[args.indexOf('-d') + 1];
   const fileName = args[6];
   return { cutOptions: { field, separator, fileName } };
 };
