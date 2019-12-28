@@ -10,8 +10,7 @@ const errors = {
 };
 
 const selectStream = function(fileName, fileReadStream, stdin) {
-  if (fileName) return fileReadStream(fileName);
-  return stdin;
+  return fileName ? fileReadStream(fileName) : stdin;
 };
 
 const respondWithContent = function(onComplete, content) {
