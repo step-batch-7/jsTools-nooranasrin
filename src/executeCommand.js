@@ -9,8 +9,8 @@ const errors = {
   EACCES: 'cut: Permission denied'
 };
 
-const selectStream = function(cutOptions, fileReadStream, stdin) {
-  if (cutOptions.fileName) return fileReadStream(cutOptions.fileName);
+const selectStream = function(fileName, fileReadStream, stdin) {
+  if (fileName) return fileReadStream(fileName);
   return stdin;
 };
 
@@ -33,7 +33,7 @@ const onStream = function(stream, cutOptions, onComplete) {
 const executeCut = function(cmdLineArgs, fileReadStream, stdin, onComplete) {
   const { cutOptions, error } = parseCmdLineArgs(cmdLineArgs);
   if (error) return onComplete(error, EMPTY_STRING);
-  const stream = selectStream(cutOptions, fileReadStream, stdin);
+  const stream = selectStream(cutOptions.fileName, fileReadStream, stdin);
   return onStream(stream, cutOptions, onComplete);
 };
 
