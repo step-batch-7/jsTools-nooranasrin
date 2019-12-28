@@ -17,7 +17,7 @@ describe('executeCut', () => {
     const onComplete = sinon.stub();
     const eventEmitter = new EventEmitter();
     eventEmitter.setEncoding = sinon.spy();
-    eventEmitter.path = 'fileName';
+    eventEmitter.path = sinon.spy();
     const readFileStream = sinon.fake.returns(eventEmitter);
     executeCut(userArgs, readFileStream, '', onComplete);
     assert(readFileStream.calledOnceWithExactly('fileName'));
@@ -30,7 +30,7 @@ describe('executeCut', () => {
     const onComplete = sinon.stub();
     const eventEmitter = new EventEmitter();
     eventEmitter.setEncoding = sinon.spy();
-    eventEmitter.path = 'fileName';
+    eventEmitter.path = sinon.spy();
     const readFileStream = sinon.fake.returns(eventEmitter);
     executeCut(userArgs, readFileStream, '', onComplete);
     assert(readFileStream.calledOnceWithExactly('fileName'));
@@ -43,7 +43,7 @@ describe('executeCut', () => {
     const onComplete = sinon.stub();
     const eventEmitter = new EventEmitter();
     eventEmitter.setEncoding = sinon.spy();
-    eventEmitter.path = 'fileName';
+    eventEmitter.path = sinon.spy();
     const readFileStream = sinon.fake.returns(eventEmitter);
     executeCut(userArgs, readFileStream, '', onComplete);
     assert(readFileStream.calledOnceWithExactly('fileName'));
