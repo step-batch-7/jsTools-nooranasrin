@@ -1,3 +1,2 @@
 node cut.js -f 0 -d "," appTests/numbers.txt
 cut: [-cf] list: values may not include zero
-

@@ -1,4 +1,0 @@
-node cut.js -f
-cut: option requires an argument -- f
-usage:cut -f list [-s] [-d delim] [file ...]
-

@@ -1,3 +1,2 @@
 node cut.js -f 2 -d "," appTest
 cut: No such file or directory
-

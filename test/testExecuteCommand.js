@@ -5,35 +5,38 @@ const { executeCut } = require('../src/executeCommand');
 describe('executeCut', () => {
   it('should give corresponding error message when -f is missing', () => {
     const onComplete = sinon.stub();
-    const actual = executeCut([], '', '', onComplete);
+    const inputStreams = { createReadStream: '', stdin: '' };
+    const actual = executeCut([], inputStreams, onComplete);
     assert.deepStrictEqual(actual, undefined);
     assert(
-      onComplete.calledWithExactly(`usage: cut -f list [-d delim] [file]`, '')
+      onComplete.calledWithExactly('usage: cut -f list [-d delim] [file]', '')
     );
   });
 
-  it('should give corresponding error message when the file is not existing', () => {
+  it('should give error message when the file is not existing', () => {
     const userArgs = ['node', 'cut.js', '-f', '1', '-d', ',', 'fileName'];
     const onComplete = sinon.stub();
     const eventEmitter = new EventEmitter();
     eventEmitter.setEncoding = sinon.spy();
-    const readFileStream = sinon.fake.returns(eventEmitter);
-    executeCut(userArgs, readFileStream, '', onComplete);
-    assert(readFileStream.calledOnceWithExactly('fileName'));
+    const createReadStream = sinon.fake.returns(eventEmitter);
+    const inputStreams = { createReadStream, stdin: '' };
+    executeCut(userArgs, inputStreams, onComplete);
+    assert(createReadStream.calledOnceWithExactly('fileName'));
     eventEmitter.emit('error', { code: 'ENOENT' });
-    assert(onComplete.calledWithExactly(`cut: No such file or directory`, ''));
+    assert(onComplete.calledWithExactly('cut: No such file or directory', ''));
   });
 
-  it('should give ENOENT error message when the error code is not expected', () => {
+  it('should give ENOENT error when the error code is not expected', () => {
     const userArgs = ['node', 'cut.js', '-f', '1', '-d', ',', 'fileName'];
     const onComplete = sinon.stub();
     const eventEmitter = new EventEmitter();
     eventEmitter.setEncoding = sinon.spy();
-    const readFileStream = sinon.fake.returns(eventEmitter);
-    executeCut(userArgs, readFileStream, '', onComplete);
-    assert(readFileStream.calledOnceWithExactly('fileName'));
+    const createReadStream = sinon.fake.returns(eventEmitter);
+    const inputStreams = { createReadStream, stdin: '' };
+    executeCut(userArgs, inputStreams, onComplete);
+    assert(createReadStream.calledOnceWithExactly('fileName'));
     eventEmitter.emit('error', { code: 'ENOEN' });
-    assert(onComplete.calledWithExactly(`cut: No such file or directory`, ''));
+    assert(onComplete.calledWithExactly('cut: No such file or directory', ''));
   });
 
   it('should give expected fields when the file is existing', () => {
@@ -41,9 +44,10 @@ describe('executeCut', () => {
     const onComplete = sinon.stub();
     const eventEmitter = new EventEmitter();
     eventEmitter.setEncoding = sinon.spy();
-    const readFileStream = sinon.fake.returns(eventEmitter);
-    executeCut(userArgs, readFileStream, '', onComplete);
-    assert(readFileStream.calledOnceWithExactly('fileName'));
+    const createReadStream = sinon.fake.returns(eventEmitter);
+    const inputStreams = { createReadStream, stdin: '' };
+    executeCut(userArgs, inputStreams, onComplete);
+    assert(createReadStream.calledOnceWithExactly('fileName'));
     eventEmitter.emit('data', '1,2,3,4\n2,3');
     assert(onComplete.calledOnceWithExactly('', '1\n2'));
   });
@@ -53,7 +57,8 @@ describe('executeCut', () => {
     const onComplete = sinon.stub();
     const stdin = new EventEmitter();
     stdin.setEncoding = sinon.spy();
-    executeCut(userArgs, '', stdin, onComplete);
+    const inputStreams = { createReadStream: '', stdin };
+    executeCut(userArgs, inputStreams, onComplete);
     stdin.emit('data', '1,2,3,4\n2,3');
     assert(onComplete.calledOnceWithExactly('', '1\n2'));
   });

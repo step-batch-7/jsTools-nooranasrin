@@ -1,9 +1,13 @@
 'use strict';
 
 const getFieldContents = function(field, separator, line) {
+  const unit = 1;
+  const initialIndex = 0;
   const contentList = line.split(separator);
-  if (contentList.length === 1) return contentList[0];
-  return contentList[+field - 1];
+  if (contentList.length === unit) {
+    return contentList[initialIndex];
+  }
+  return contentList[+field - unit];
 };
 
 const splitFields = function(cutDetails, contents) {
