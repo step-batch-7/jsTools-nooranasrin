@@ -18,10 +18,18 @@ const errorMessage = {
 
 const validateArgs = function(args, field) {
   if (!args.includes('-f')) return { error: errorMessage.fieldMissing };
-  if (+field === 0) return { error: errorMessage.zeroField };
-  if (field === undefined) return { error: errorMessage.undefinedField };
-  if (!Number.isInteger(+field)) return { error: errorMessage.notNumber };
+  if (!/^[0-9]*[1-9][0-9]*$/.test(field)) return getFieldError(field);
   return {};
+};
+
+const getFieldError = function(field) {
+  const errors = [
+    [/^0*$/, errorMessage.zeroField],
+    [/^undefined$/, errorMessage.undefinedField],
+    [/[^(0-9)]/, errorMessage.notNumber]
+  ];
+  const error = errors.find(errorPair => errorPair[0].test(field));
+  return { error: error[1] };
 };
 
 module.exports = { parseCmdLineArgs };
