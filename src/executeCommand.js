@@ -1,5 +1,5 @@
 'use strict';
-const { splitFields } = require('./cutLib');
+const { Cut } = require('./cutLib');
 const { parseCmdLineArgs } = require('./parseCmdLineArgs');
 const EMPTY_STRING = '';
 
@@ -13,10 +13,10 @@ const selectStream = function(fileName, createReadStream, stdin) {
   return fileName ? createReadStream(fileName) : stdin;
 };
 
-const onStream = function(stream, cutOptions, onComplete) {
+const onStream = function(stream, cutTools, onComplete) {
   stream.setEncoding('utf8');
   stream.on('data', content => {
-    const requiredFields = splitFields(cutOptions, content).join('\n');
+    const requiredFields = cutTools.cutFields(content).join('\n');
     onComplete('', requiredFields);
   });
   stream.on('error', error =>
@@ -30,8 +30,9 @@ const executeCut = function(cmdLineArgs, inputStreams, onComplete) {
   if (error) {
     return onComplete(error, EMPTY_STRING);
   }
+  const cutTools = new Cut(cutOptions);
   const stream = selectStream(cutOptions.fileName, createReadStream, stdin);
-  return onStream(stream, cutOptions, onComplete);
+  return onStream(stream, cutTools, onComplete);
 };
 
 module.exports = { executeCut };

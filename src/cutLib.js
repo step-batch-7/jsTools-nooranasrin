@@ -1,19 +1,25 @@
 'use strict';
 
-const getFieldContents = function(field, delimiter, line) {
+const extractFields = function(cutTools, line) {
   const unit = 1;
   const initialIndex = 0;
-  const contentList = line.split(delimiter);
+  const contentList = line.split(cutTools.delimiter);
   if (contentList.length === unit) {
     return contentList[initialIndex];
   }
-  return contentList[+field - unit];
+  return contentList[+cutTools.fieldNumber - unit];
 };
 
-const splitFields = function(cutDetails, contents) {
-  const { field, delimiter } = cutDetails;
-  const lines = contents.split('\n');
-  return lines.map(getFieldContents.bind(null, field, delimiter));
-};
+class Cut {
+  constructor(cutOptions) {
+    this.fieldNumber = cutOptions.field;
+    this.delimiter = cutOptions.delimiter;
+  }
 
-module.exports = { splitFields };
+  cutFields(contents) {
+    const lines = contents.split('\n');
+    return lines.map(extractFields.bind(null, this));
+  }
+}
+
+module.exports = { Cut };
