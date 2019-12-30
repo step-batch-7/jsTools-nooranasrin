@@ -13,19 +13,19 @@ const selectStream = function(fileName, createReadStream, stdin) {
   return fileName ? createReadStream(fileName) : stdin;
 };
 
-const respondWithContent = function(onComplete, content) {
+const onContent = function(onComplete, content) {
   const requiredFields = splitFields(this, content).join('\n');
   onComplete('', requiredFields);
 };
 
-const respondWithError = function(onComplete, error) {
+const onError = function(onComplete, error) {
   onComplete(errors[error.code] || errors['ENOENT'], EMPTY_STRING);
 };
 
 const onStream = function(stream, cutOptions, onComplete) {
   stream.setEncoding('utf8');
-  stream.on('data', respondWithContent.bind(cutOptions, onComplete));
-  stream.on('error', respondWithError.bind(null, onComplete));
+  stream.on('data', onContent.bind(cutOptions, onComplete));
+  stream.on('error', onError.bind(null, onComplete));
 };
 
 const executeCut = function(cmdLineArgs, inputStreams, onComplete) {

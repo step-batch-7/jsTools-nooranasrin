@@ -2,10 +2,10 @@ const assert = require('chai').assert;
 const { parseCmdLineArgs } = require('../src/parseCmdLineArgs');
 
 describe('parseCmdLineArgs', () => {
-  it('should give an object having the field,separator and fileName', () => {
+  it('should give an object having the field,delimiter and fileName', () => {
     const cmdLineArg = ['node', '-f', '3', '-d', ',', 'cut.js'];
     const expected = {
-      cutOptions: { field: '3', separator: ',', fileName: undefined }
+      cutOptions: { field: '3', delimiter: ',', fileName: undefined }
     };
     assert.deepStrictEqual(parseCmdLineArgs(cmdLineArg), expected);
   });

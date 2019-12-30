@@ -3,22 +3,22 @@ const cut = require('../src/cutLib');
 const { splitFields } = cut;
 
 describe('splitFields', () => {
-  it('should give the line when the separator is not present', () => {
-    const cutInfo = {
+  it('should give the line when the delimiter is not present', () => {
+    const cutDetails = {
       field: 2,
-      separator: ';'
+      delimiter: ';'
     };
     const contents = '1,2,3';
-    const actual = splitFields(cutInfo, contents);
+    const actual = splitFields(cutDetails, contents);
     assert.deepStrictEqual(actual, ['1,2,3']);
   });
-  it('should give the field contents when the separator is present', () => {
-    const cutInfo = {
+  it('should give the field contents when the delimiter is present', () => {
+    const cutDetails = {
       field: 2,
-      separator: ','
+      delimiter: ','
     };
     const contents = '1,2,3';
-    const actual = splitFields(cutInfo, contents);
+    const actual = splitFields(cutDetails, contents);
     assert.deepStrictEqual(actual, ['2']);
   });
 });

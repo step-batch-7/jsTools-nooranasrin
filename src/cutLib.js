@@ -1,9 +1,9 @@
 'use strict';
 
-const getFieldContents = function(field, separator, line) {
+const getFieldContents = function(field, delimiter, line) {
   const unit = 1;
   const initialIndex = 0;
-  const contentList = line.split(separator);
+  const contentList = line.split(delimiter);
   if (contentList.length === unit) {
     return contentList[initialIndex];
   }
@@ -11,9 +11,9 @@ const getFieldContents = function(field, separator, line) {
 };
 
 const splitFields = function(cutDetails, contents) {
-  const { field, separator } = cutDetails;
+  const { field, delimiter } = cutDetails;
   const lines = contents.split('\n');
-  return lines.map(getFieldContents.bind(null, field, separator));
+  return lines.map(getFieldContents.bind(null, field, delimiter));
 };
 
 module.exports = { splitFields };
