@@ -8,9 +8,15 @@ const parseCmdLineArgs = function(args) {
   if (error) {
     return { error };
   }
-  const delimiter = args[args.indexOf('-d') + unit];
+  const delimiter = getDelimiter(args);
   const fileName = args[fileNamePosition];
   return { cutOptions: { field, delimiter, fileName } };
+};
+
+const getDelimiter = function(args) {
+  const unit = 1;
+  const delimiterPosition = args.indexOf('-d');
+  return delimiterPosition === -unit ? '\t' : args[delimiterPosition + unit];
 };
 
 const errorMessage = {

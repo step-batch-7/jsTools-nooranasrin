@@ -30,4 +30,12 @@ describe('parseCmdLineArgs', () => {
       error: 'cut: [-cf] list: values may not include zero'
     });
   });
+
+  it('should give delimiter tab when the -d option is not given', () => {
+    const cmdLineArg = ['node', '-f', '3', 'cut.js'];
+    const expected = {
+      cutOptions: { field: '3', delimiter: '\t', fileName: undefined }
+    };
+    assert.deepStrictEqual(parseCmdLineArgs(cmdLineArg), expected);
+  });
 });
