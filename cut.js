@@ -11,4 +11,4 @@ const main = function(cmdLineArgs) {
   executeCut(cmdLineArgs, { createReadStream, stdin }, displayResult);
 };
 
-main(process.argv);
+main(process.argv.slice(2));

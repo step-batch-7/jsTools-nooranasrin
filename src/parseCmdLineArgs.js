@@ -20,8 +20,8 @@ const getDelimiter = function(args) {
 
 const getFileName = function(args) {
   const unit = 1;
-  const filePosition1 = 4;
-  const filePosition2 = 6;
+  const filePosition1 = 2;
+  const filePosition2 = 4;
   const delimiterPosition = args.indexOf('-d');
   if (delimiterPosition === -unit) {
     return args[filePosition1];

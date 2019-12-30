@@ -14,7 +14,7 @@ describe('executeCut', () => {
   });
 
   it('should give error message when the file is not existing', () => {
-    const userArgs = ['node', 'cut.js', '-f', '1', '-d', ',', 'fileName'];
+    const userArgs = ['-f', '1', '-d', ',', 'fileName'];
     const onComplete = sinon.stub();
     const eventEmitter = new EventEmitter();
     eventEmitter.setEncoding = sinon.spy();
@@ -27,7 +27,7 @@ describe('executeCut', () => {
   });
 
   it('should give ENOENT error when the error code is not expected', () => {
-    const userArgs = ['node', 'cut.js', '-f', '1', '-d', ',', 'fileName'];
+    const userArgs = ['-f', '1', '-d', ',', 'fileName'];
     const onComplete = sinon.stub();
     const eventEmitter = new EventEmitter();
     eventEmitter.setEncoding = sinon.spy();
@@ -40,7 +40,7 @@ describe('executeCut', () => {
   });
 
   it('should give expected fields when the file is existing', () => {
-    const userArgs = ['node', 'cut.js', '-f', '1', '-d', ',', 'fileName'];
+    const userArgs = ['-f', '1', '-d', ',', 'fileName'];
     const onComplete = sinon.stub();
     const eventEmitter = new EventEmitter();
     eventEmitter.setEncoding = sinon.spy();
@@ -53,7 +53,7 @@ describe('executeCut', () => {
   });
 
   it('should give expected fields in case of stdin', () => {
-    const userArgs = ['node', 'cut.js', '-f', '1', '-d', ','];
+    const userArgs = ['-f', '1', '-d', ','];
     const onComplete = sinon.stub();
     const stdin = new EventEmitter();
     stdin.setEncoding = sinon.spy();
