@@ -2,14 +2,13 @@
 
 const parseCmdLineArgs = function(args) {
   const unit = 1;
-  const fileNamePosition = 6;
   const field = args[args.indexOf('-f') + unit];
   const { error } = validateArgs(args, field);
   if (error) {
     return { error };
   }
   const delimiter = getDelimiter(args);
-  const fileName = args[fileNamePosition];
+  const fileName = getFileName(args);
   return { cutOptions: { field, delimiter, fileName } };
 };
 
@@ -17,6 +16,17 @@ const getDelimiter = function(args) {
   const unit = 1;
   const delimiterPosition = args.indexOf('-d');
   return delimiterPosition === -unit ? '\t' : args[delimiterPosition + unit];
+};
+
+const getFileName = function(args) {
+  const unit = 1;
+  const filePosition1 = 4;
+  const filePosition2 = 6;
+  const delimiterPosition = args.indexOf('-d');
+  if (delimiterPosition === -unit) {
+    return args[filePosition1];
+  }
+  return args[filePosition2];
 };
 
 const errorMessage = {
