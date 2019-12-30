@@ -9,7 +9,8 @@ const main = function(cmdLineArgs) {
     stdout.write(content);
     stderr.write(error);
   };
-  executeCut(args, { createReadStream, stdin }, displayResult);
+  const inputStreams = { createReadStream, stdin };
+  executeCut(args, inputStreams, displayResult);
 };
 
 main(process.argv);
