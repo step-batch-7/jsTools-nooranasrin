@@ -4,11 +4,12 @@ const { stdout, stdin, stderr } = process;
 const { executeCut } = require('./src/executeCommand');
 
 const main = function(cmdLineArgs) {
+  const [, , ...args] = cmdLineArgs;
   const displayResult = (error, content) => {
     stdout.write(content);
     stderr.write(error);
   };
-  executeCut(cmdLineArgs, { createReadStream, stdin }, displayResult);
+  executeCut(args, { createReadStream, stdin }, displayResult);
 };
 
-main(process.argv.slice(2));
+main(process.argv);
