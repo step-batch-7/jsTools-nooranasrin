@@ -29,22 +29,16 @@ const getFileName = function(args) {
   return args[filePosition2];
 };
 
-const errorMessage = {
-  fieldMissing: 'usage: cut -f list [-d delim] [file]',
-  zeroField: 'cut: [-cf] list: values may not include zero',
-  notNumber: 'cut: [-cf] list: illegal list value'
-};
-
 const validateArgs = function(args, field) {
   const fieldZero = 0;
   if (!args.includes('-f')) {
-    return { error: errorMessage.fieldMissing };
+    return { error: 'usage: cut -f list [-d delim] [file]' };
   }
   if (+field === fieldZero) {
-    return { error: errorMessage.zeroField };
+    return { error: 'cut: [-cf] list: values may not include zero' };
   }
   if (!Number.isInteger(+field)) {
-    return { error: errorMessage.notNumber };
+    return { error: 'cut: [-cf] list: illegal list value' };
   }
   return {};
 };
