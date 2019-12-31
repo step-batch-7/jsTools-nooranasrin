@@ -2,8 +2,8 @@ const assert = require('chai').assert;
 const sinon = require('sinon');
 const { executeCut } = require('../src/executeCommand');
 describe('executeCut', () => {
+  afterEach(() => sinon.restore());
   it('should give corresponding error message when -f is missing', () => {
-    afterEach(() => sinon.restore());
     const onComplete = sinon.stub();
     const inputStreams = { createReadStream: '', stdin: '' };
     const actual = executeCut([], inputStreams, onComplete);
@@ -14,7 +14,6 @@ describe('executeCut', () => {
   });
 
   it('should give error message when the file is not existing', done => {
-    afterEach(() => sinon.restore());
     const onComplete = function(error, content) {
       assert.strictEqual(error, 'cut: No such file or directory');
       assert.strictEqual(content, '');
@@ -35,7 +34,6 @@ describe('executeCut', () => {
   });
 
   it('should give ENOENT error when the error code is not expected', done => {
-    afterEach(() => sinon.restore());
     const onComplete = function(error, content) {
       assert.strictEqual(error, 'cut: No such file or directory');
       assert.strictEqual(content, '');
@@ -56,7 +54,6 @@ describe('executeCut', () => {
   });
 
   it('should give expected fields when the file is existing', done => {
-    afterEach(() => sinon.restore());
     const onComplete = function(error, content) {
       assert.strictEqual(error, '');
       assert.strictEqual(content, '1');
@@ -77,7 +74,6 @@ describe('executeCut', () => {
   });
 
   it('should give expected fields in case of stdin', done => {
-    afterEach(() => sinon.restore());
     const onComplete = function(error, content) {
       assert.strictEqual(error, '');
       assert.strictEqual(content, '1');
