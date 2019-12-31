@@ -29,12 +29,13 @@ const onStream = function(stream, cutTools, onComplete) {
 
 const executeCut = function(cmdLineArgs, inputStreamCreator, onComplete) {
   const { cutOptions, error } = parseCmdLineArgs(cmdLineArgs);
-  if (error) {
-    return onComplete(error, EMPTY_STRING);
+  if (cutOptions) {
+    const cutTools = new Cut(cutOptions);
+    const stream = selectStream(cutOptions.fileName, inputStreamCreator);
+    onStream(stream, cutTools, onComplete);
+  } else{
+    onComplete(error, EMPTY_STRING);
   }
-  const cutTools = new Cut(cutOptions);
-  const stream = selectStream(cutOptions.fileName, inputStreamCreator);
-  return onStream(stream, cutTools, onComplete);
 };
 
 module.exports = { executeCut };
