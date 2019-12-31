@@ -14,7 +14,10 @@ describe('executeCut', () => {
   });
 
   it('should give error message when the file is not existing', done => {
-    const onComplete = sinon.fake(() => done());
+    const onComplete = sinon.fake(() => {
+      assert.isTrue(onComplete.calledWithExactly('cut: No such file or directory', ''));
+      done();
+    });
     const readStream = { setEncoding: sinon.fake(), on: sinon.fake() };
     const createReadStream = sinon.fake.returns(readStream);
     executeCut(
@@ -27,11 +30,13 @@ describe('executeCut', () => {
     assert.strictEqual(readStream.on.secondCall.args[0], 'error');
     assert.isTrue(readStream.on.calledTwice);
     readStream.on.secondCall.args[1]({ code: 'ENOENT' });
-    assert.isTrue(onComplete.calledWithExactly('cut: No such file or directory', ''));
   });
 
   it('should give ENOENT error when the error code is not expected', done => {
-    const onComplete = sinon.fake(() => done());
+    const onComplete = sinon.fake(() => {
+      assert.isTrue(onComplete.calledWithExactly('cut: No such file or directory', ''));
+      done();
+    });
     const readStream = { setEncoding: sinon.fake(), on: sinon.fake() };
     const createReadStream = sinon.fake.returns(readStream);
     executeCut(
@@ -44,11 +49,13 @@ describe('executeCut', () => {
     assert.strictEqual(readStream.on.secondCall.args[0], 'error');
     assert.isTrue(readStream.on.calledTwice);
     readStream.on.secondCall.args[1]({ code: 'ENOEN' });
-    assert.isTrue(onComplete.calledWithExactly('cut: No such file or directory', ''));
   });
 
   it('should give expected fields when the file is existing', done => {
-    const onComplete = sinon.fake(() => done());
+    const onComplete = sinon.fake(() => {
+      assert.isTrue(onComplete.calledWithExactly('', '1'));
+      done();
+    });
     const readStream = { setEncoding: sinon.fake(), on: sinon.fake() };
     const createReadStream = sinon.fake.returns(readStream);
     executeCut(
@@ -61,11 +68,13 @@ describe('executeCut', () => {
     assert.strictEqual(readStream.on.secondCall.args[0], 'error');
     assert.isTrue(readStream.on.calledTwice);
     readStream.on.firstCall.args[1]('1,2,3');
-    assert.isTrue(onComplete.calledWithExactly('', '1'));
   });
 
   it('should give expected fields in case of stdin', done => {
-    const onComplete = sinon.fake(() => done());
+    const onComplete = sinon.fake(() => {
+      assert.isTrue(onComplete.calledWithExactly('', '1'));
+      done();
+    });
     const stdin = { setEncoding: sinon.fake(), on: sinon.fake() };
     const createStdinStream = sinon.fake.returns(stdin);
     const inputStreams = { createStdinStream };
@@ -75,6 +84,5 @@ describe('executeCut', () => {
     assert.strictEqual(stdin.on.secondCall.args[0], 'error');
     assert.isTrue(stdin.on.calledTwice);
     stdin.on.firstCall.args[1]('1,2,3');
-    assert.isTrue(onComplete.calledWithExactly('', '1'));
   });
 });
