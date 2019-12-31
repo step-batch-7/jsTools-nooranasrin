@@ -9,8 +9,11 @@ const errors = {
   EACCES: 'cut: Permission denied'
 };
 
-const selectStream = function(fileName, createReadStream, stdin) {
-  return fileName ? createReadStream(fileName) : stdin;
+const selectStream = function(fileName, inputStreamCreator) {
+  if (fileName) {
+    return inputStreamCreator.createReadStream(fileName);
+  }
+  return inputStreamCreator.createStdinStream();
 };
 
 const onStream = function(stream, cutTools, onComplete) {
@@ -24,14 +27,13 @@ const onStream = function(stream, cutTools, onComplete) {
   );
 };
 
-const executeCut = function(cmdLineArgs, inputStreams, onComplete) {
-  const { createReadStream, stdin } = inputStreams;
+const executeCut = function(cmdLineArgs, inputStreamCreator, onComplete) {
   const { cutOptions, error } = parseCmdLineArgs(cmdLineArgs);
   if (error) {
     return onComplete(error, EMPTY_STRING);
   }
   const cutTools = new Cut(cutOptions);
-  const stream = selectStream(cutOptions.fileName, createReadStream, stdin);
+  const stream = selectStream(cutOptions.fileName, inputStreamCreator);
   return onStream(stream, cutTools, onComplete);
 };
 
