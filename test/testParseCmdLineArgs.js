@@ -5,15 +5,15 @@ describe('parseCmdLineArgs', () => {
   it('should give an object having the field,delimiter and fileName', () => {
     const cmdLineArg = ['-f', '3', '-d', ',', 'cut.js'];
     const expected = {
-      cutOptions: { field: '3', delimiter: ',', fileName: 'cut.js' }
+      cutOptions: {'-f': '3', '-d': ',', fileName: 'cut.js' }
     };
     assert.deepStrictEqual(parseCmdLineArgs(cmdLineArg), expected);
   });
-  it('should give corresponding error when -f is not present', () => {
-    const args = ['4', '-d', ',', 'numbers.js'];
+  it('should give corresponding error in the case of bad delimiter', () => {
+    const args = ['-f', '4', '-d', 'hello', 'numbers.js'];
     const actual = parseCmdLineArgs(args);
     assert.deepStrictEqual(actual, {
-      error: 'usage: cut -f list [-d delim] [file]'
+      error: 'cut: bad delimiter'
     });
   });
   it('should give corresponding error when field is not a number', () => {
@@ -34,7 +34,7 @@ describe('parseCmdLineArgs', () => {
   it('should give delimiter tab when the -d option is not given', () => {
     const cmdLineArg = ['-f', '3', 'cut.js'];
     const expected = {
-      cutOptions: { field: '3', delimiter: '\t', fileName: 'cut.js' }
+      cutOptions: { '-f': '3', '-d': '\t', fileName: 'cut.js' }
     };
     assert.deepStrictEqual(parseCmdLineArgs(cmdLineArg), expected);
   });

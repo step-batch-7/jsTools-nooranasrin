@@ -12,8 +12,8 @@ const extractFields = function(cutTools, line) {
 
 class Cut {
   constructor(cutOptions) {
-    this.fieldNumber = cutOptions.field;
-    this.delimiter = cutOptions.delimiter;
+    this.fieldNumber = cutOptions['-f'];
+    this.delimiter = cutOptions['-d'];
   }
 
   cutFields(contents) {

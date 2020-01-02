@@ -3,13 +3,13 @@ const sinon = require('sinon');
 const { executeCut } = require('../src/executeCommand');
 describe('executeCut', () => {
   afterEach(() => sinon.restore());
-  it('should give corresponding error message when -f is missing', () => {
+  it('should give corresponding error message in the case of bad delimitor', () => {
     const onComplete = sinon.stub();
     const inputStreams = { createReadStream: '', stdin: '' };
-    const actual = executeCut([], inputStreams, onComplete);
+    const actual = executeCut(['-f', '2', '-d', 'abc'], inputStreams, onComplete);
     assert.deepStrictEqual(actual, undefined);
     assert(
-      onComplete.calledWithExactly('usage: cut -f list [-d delim] [file]', '')
+      onComplete.calledWithExactly('cut: bad delimiter', '')
     );
   });
 

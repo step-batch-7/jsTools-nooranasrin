@@ -1,0 +1,2 @@
+node cut.js -f 2 -d 'hai' appTests/numbers.txt
+cut: bad delimiter
