@@ -2,7 +2,6 @@ const assert = require('chai').assert;
 const sinon = require('sinon');
 const { executeCut } = require('../src/executeCommand');
 describe('executeCut', () => {
-  afterEach(() => sinon.restore());
   it('should give corresponding error message in the case of bad delimitor', () => {
     const onComplete = sinon.stub();
     const inputStreams = { createReadStream: '', stdin: '' };
