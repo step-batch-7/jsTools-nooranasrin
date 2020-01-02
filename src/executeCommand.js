@@ -16,7 +16,7 @@ const selectStream = function(fileName, inputStreamCreator) {
   return inputStreamCreator.createStdinStream();
 };
 
-const onStream = function(stream, cutTools, onComplete) {
+const loadLine = function(stream, cutTools, onComplete) {
   stream.setEncoding('utf8');
   stream.on('data', content => {
     const requiredFields = cutTools.cutFields(content).join('\n');
@@ -32,7 +32,7 @@ const executeCut = function(cmdLineArgs, inputStreamCreator, onComplete) {
   if (cutOptions) {
     const cutTools = new Cut(cutOptions);
     const stream = selectStream(cutOptions.fileName, inputStreamCreator);
-    onStream(stream, cutTools, onComplete);
+    loadLine(stream, cutTools, onComplete);
   } else{
     onComplete(error, EMPTY_STRING);
   }
