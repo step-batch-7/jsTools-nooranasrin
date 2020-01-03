@@ -6,7 +6,7 @@ describe('executeCut', () => {
   beforeEach(() => {
     readStream = { setEncoding: sinon.fake(), on: sinon.fake() };
   });
-  it('should give corresponding error message in the case of bad delimitor', () => {
+  it('should give corresponding error message in the case of bad delimiter', () => {
     const onComplete = sinon.stub();
     const inputStreams = { createReadStream: '', stdin: '' };
     const actual = executeCut(['-f', '2', '-d', 'abc'], inputStreams, onComplete);

@@ -26,4 +26,22 @@ describe('Cut', () => {
       assert.deepStrictEqual(actual, expected);
     });
   });
+
+  describe('validateOptions', () => {
+    it('should give expected error when field value is zero', () => {
+      const cutTools = new Cut({'-f': 0, '-d': ','});
+      const actual = cutTools.validateOptions();
+      assert.deepStrictEqual(actual, {error: 'cut: [-cf] list: values may not include zero'});
+    });
+    it('should give expected error when field value is not a number', () => {
+      const cutTools = new Cut({'-f': 'hello', '-d': ','});
+      const actual = cutTools.validateOptions();
+      assert.deepStrictEqual(actual, {error: 'cut: [-cf] list: illegal list value'});
+    });
+    it('should give expected error when delimiter contains more than one character', () => {
+      const cutTools = new Cut({'-f': '5', '-d': ',,,'});
+      const actual = cutTools.validateOptions();
+      assert.deepStrictEqual(actual, {error: 'cut: bad delimiter'});
+    });
+  });
 });

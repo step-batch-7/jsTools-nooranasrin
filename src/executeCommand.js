@@ -21,13 +21,14 @@ const loadLine = function(stream, cutTools, onComplete) {
 };
 
 const executeCut = function(cmdLineArgs, streamSelector, onComplete) {
-  const { cutOptions, error } = parseCmdLineArgs(cmdLineArgs);
-  if (cutOptions) {
-    const cutTools = new Cut(cutOptions);
+  const  cutOptions = parseCmdLineArgs(cmdLineArgs);
+  const cutTools = new Cut(cutOptions);
+  const {error} = cutTools.validateOptions();
+  if(error) {
+    onComplete(error, EMPTY_STRING);
+  } else {
     const stream = streamSelector.select(cutOptions.fileName);
     loadLine(stream, cutTools, onComplete);
-  } else{
-    onComplete(error, EMPTY_STRING);
   }
 };
 

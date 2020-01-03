@@ -1,20 +1,5 @@
 'use strict';
 
-const validateArgs = function(cutOptions) {
-  const fieldZero = 0;
-  const delimiterLength = 1;
-  if(+cutOptions['-f'] === fieldZero) {
-    return { error: 'cut: [-cf] list: values may not include zero' };
-  }
-  if(!Number.isInteger(+cutOptions['-f'])) {
-    return { error: 'cut: [-cf] list: illegal list value' };
-  }
-  if(cutOptions['-d'].length > delimiterLength) {
-    return {error: 'cut: bad delimiter'};
-  }
-  return cutOptions;
-};
-
 const pairArgs = function(userOptions, cmdLineArg) {
   const secondIndex = 1;
   if(cmdLineArg.startsWith('-')) {
@@ -39,17 +24,12 @@ const extractOptions = function(cutOptions, optionPair) {
   }
   cutOptions[optionPair[firstIndex]] = optionPair[secondIndex];
   return cutOptions;
-}; 
+};
 
 const parseCmdLineArgs = function(cmdLineArgs) {
   const userOptions = cmdLineArgs.reduce(pairArgs, []);
   const lookup = {'-f': 'field', '-d': '\t'};
-  const cutOptions = userOptions.reduce(extractOptions, lookup);
-  const {error} = validateArgs(cutOptions);
-  if (error) {
-    return { error };
-  }
-  return {cutOptions};
+  return userOptions.reduce(extractOptions, lookup);
 };
 
 module.exports = { parseCmdLineArgs };
