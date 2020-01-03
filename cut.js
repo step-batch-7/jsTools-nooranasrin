@@ -1,6 +1,7 @@
 'use strict';
 const { createReadStream } = require('fs');
 const { stdout, stdin, stderr } = process;
+const {StreamSelector} = require('./src/streamSelector');
 const { executeCut } = require('./src/executeCommand');
 
 const displayResult = (error, content) => {
@@ -10,9 +11,8 @@ const displayResult = (error, content) => {
 
 const main = function(cmdLineArgs) {
   const [, , ...args] = cmdLineArgs;
-  const createStdinStream = () => stdin;
-  const inputStreamCreator = { createReadStream, createStdinStream };
-  executeCut(args, inputStreamCreator, displayResult);
+  const streamSelector = new StreamSelector(stdin, createReadStream);
+  executeCut(args, streamSelector, displayResult);
 };
 
 main(process.argv);
