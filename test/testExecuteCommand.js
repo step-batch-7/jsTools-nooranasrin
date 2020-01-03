@@ -2,6 +2,10 @@ const assert = require('chai').assert;
 const sinon = require('sinon');
 const { executeCut } = require('../src/executeCommand');
 describe('executeCut', () => {
+  let readStream;
+  beforeEach(() => {
+    readStream = { setEncoding: sinon.fake(), on: sinon.fake() };
+  });
   it('should give corresponding error message in the case of bad delimitor', () => {
     const onComplete = sinon.stub();
     const inputStreams = { createReadStream: '', stdin: '' };
@@ -13,7 +17,6 @@ describe('executeCut', () => {
   });
 
   it('should give error message when the file is not existing', done => {
-    const readStream = { setEncoding: sinon.fake(), on: sinon.fake() };
     const streamSelector = {select: sinon.stub().withArgs('num.txt').returns(readStream)};
     const onComplete = sinon.fake(() => {
       assert.isTrue(onComplete.calledWithExactly('cut: No such file or directory', ''));
@@ -32,7 +35,6 @@ describe('executeCut', () => {
   });
 
   it('should give ENOENT error when the error code is not expected', done => {
-    const readStream = { setEncoding: sinon.fake(), on: sinon.fake() };
     const streamSelector = {select: sinon.stub().withArgs('num.txt').returns(readStream)};
     const onComplete = sinon.fake(() => {
       assert.isTrue(onComplete.calledWithExactly('cut: No such file or directory', ''));
@@ -51,7 +53,6 @@ describe('executeCut', () => {
   });
 
   it('should give expected fields when the file is existing', done => {
-    const readStream = { setEncoding: sinon.fake(), on: sinon.fake() };
     const streamSelector = {select: sinon.stub().withArgs('num.txt').returns(readStream)};
     const onComplete = sinon.fake(() => {
       assert.isTrue(onComplete.calledWithExactly('', '1'));
@@ -70,7 +71,6 @@ describe('executeCut', () => {
   });
 
   it('should give expected fields in case of stdin', done => {
-    const readStream = { setEncoding: sinon.fake(), on: sinon.fake() };
     const streamSelector = {select: sinon.stub().withArgs().returns(readStream)};
     const onComplete = sinon.fake(() => {
       assert.isTrue(onComplete.calledWithExactly('', '1'));
