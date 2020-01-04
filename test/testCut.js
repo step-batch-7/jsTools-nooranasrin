@@ -1,5 +1,5 @@
 const assert = require('chai').assert;
-const { Cut } = require('../src/cutLib');
+const {Cut} = require('../src/cutLib');
 
 describe('Cut', () => {
   describe('cutFields', () => {
@@ -31,14 +31,16 @@ describe('Cut', () => {
     it('should give expected error when field value is zero', () => {
       const cutTools = new Cut({'-f': 0, '-d': ','});
       const actual = cutTools.validateOptions();
-      assert.deepStrictEqual(actual, {error: 'cut: [-cf] list: values may not include zero'});
+      const expected = {error: 'cut: [-cf] list: values may not include zero'};
+      assert.deepStrictEqual(actual, expected);
     });
     it('should give expected error when field value is not a number', () => {
       const cutTools = new Cut({'-f': 'hello', '-d': ','});
       const actual = cutTools.validateOptions();
-      assert.deepStrictEqual(actual, {error: 'cut: [-cf] list: illegal list value'});
+      const expected = {error: 'cut: [-cf] list: illegal list value'};
+      assert.deepStrictEqual(actual, expected);
     });
-    it('should give expected error when delimiter contains more than one character', () => {
+    it('should give expected error when delimiter is multi character', () => {
       const cutTools = new Cut({'-f': '5', '-d': ',,,'});
       const actual = cutTools.validateOptions();
       assert.deepStrictEqual(actual, {error: 'cut: bad delimiter'});

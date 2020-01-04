@@ -1,6 +1,6 @@
 'use strict';
-const { Cut } = require('./cutLib');
-const { parseCmdLineArgs } = require('./parseCmdLineArgs');
+const {Cut} = require('./cutLib');
+const {parseCmdLineArgs} = require('./parseCmdLineArgs');
 const EMPTY_STRING = '';
 
 const errors = {
@@ -21,7 +21,7 @@ const loadLine = function(stream, cutTools, onComplete) {
 };
 
 const executeCut = function(cmdLineArgs, streamSelector, onComplete) {
-  const  cutOptions = parseCmdLineArgs(cmdLineArgs);
+  const cutOptions = parseCmdLineArgs(cmdLineArgs);
   const cutTools = new Cut(cutOptions);
   const {error} = cutTools.validateOptions();
   if(error) {
@@ -32,4 +32,4 @@ const executeCut = function(cmdLineArgs, streamSelector, onComplete) {
   }
 };
 
-module.exports = { executeCut };
+module.exports = {executeCut};

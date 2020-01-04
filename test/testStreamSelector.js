@@ -7,12 +7,14 @@ describe('StreamSelector', () => {
 
   beforeEach(() => {
     stdin = {};
-    createReadStream = sinon.stub().withArgs('filePath').returns({fileName: 'filePath'});
+    createReadStream = sinon.stub().withArgs('filePath');
+    createReadStream.returns({fileName: 'filePath'});
     streamSelector = new StreamSelector(stdin, createReadStream);
   });
 
   it('should select createReadStream in case of file ', () => {
-    assert.deepStrictEqual(streamSelector.select('filePath'), {fileName: 'filePath'});
+    const expected = {fileName: 'filePath'};
+    assert.deepStrictEqual(streamSelector.select('filePath'), expected);
   });
 
   it('should select stdin in the absence of file ', () => {

@@ -11,10 +11,10 @@ class Cut {
     const fieldZero = 0;
     const delimiterLength = 1;
     if(+this.fieldNumber === fieldZero) {
-      return { error: 'cut: [-cf] list: values may not include zero' };
+      return {error: 'cut: [-cf] list: values may not include zero'};
     }
     if(!Number.isInteger(+this.fieldNumber)) {
-      return { error: 'cut: [-cf] list: illegal list value' };
+      return {error: 'cut: [-cf] list: illegal list value'};
     }
     if(this.delimiter.length > delimiterLength) {
       return {error: 'cut: bad delimiter'};
@@ -36,4 +36,4 @@ class Cut {
   }
 }
 
-module.exports = { Cut };
+module.exports = {Cut};

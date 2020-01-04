@@ -32,4 +32,4 @@ const parseCmdLineArgs = function(cmdLineArgs) {
   return userOptions.reduce(extractOptions, lookup);
 };
 
-module.exports = { parseCmdLineArgs };
+module.exports = {parseCmdLineArgs};

@@ -1,8 +1,8 @@
 'use strict';
-const { createReadStream } = require('fs');
-const { stdout, stdin, stderr } = process;
+const {createReadStream} = require('fs');
+const {stdout, stdin, stderr} = process;
 const {StreamSelector} = require('./src/streamSelector');
-const { executeCut } = require('./src/executeCommand');
+const {executeCut} = require('./src/executeCommand');
 
 const displayResult = (error, content) => {
   stdout.write(content);
